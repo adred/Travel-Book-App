@@ -35,7 +35,6 @@ jQuery(document).ready(function($){
             var origins = response.originAddresses;
             var destinations = response.destinationAddresses;
 
-            console.log(response.rows[0].elements[0]);
             $('#distance').text(response.rows[0].elements[0].distance.text);
             $('#hours').text(response.rows[0].elements[0].duration.text);
         }
