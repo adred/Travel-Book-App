@@ -62,6 +62,7 @@ class TB_Settings {
     	}
     	if ($this->get()) {
     		$this->update();
+    		return;
     	}
 		foreach ($this->data as $field => $value) {
 			if (!in_array($field, array_keys($this->fields))) {
