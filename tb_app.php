@@ -14,7 +14,6 @@ if (!class_exists('TB_App')) {
 
 class TB_App {
 
-    public $calculator = null;
     public $optionsName = 'tb_app_options'; 
 
     function __construct() {
@@ -71,7 +70,9 @@ class TB_App {
      * @return void
      */
     public function init() {
-        $this->calculator = new TB_Calculator();
+        new TB_Sedan();
+        new TB_Van();
+        new TB_Ajax();
     }
 
     /**
