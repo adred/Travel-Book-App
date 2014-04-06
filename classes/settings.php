@@ -42,12 +42,14 @@ class TB_Settings {
     	}
     }
 
-    public function field($field) {
-    	if (!in_array($field, array_keys($this->fields))) {
+    public static function field($field) {
+    	$settings = new TB_Settings();
+    	
+    	if (!in_array($field, array_keys($settings->fields))) {
     		return 'Not a valid field';
     	}
     	else {
-    		$options = $this->get();
+    		$options = $settings->get();
     		return $options[$field];
     	}
     }
