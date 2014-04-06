@@ -6,6 +6,6 @@ function tb_field($field) {
 }
 
 function tb_get_field($field) {
-	global $settings;
+	$settings = new TB_Settings();
 	return $settings->field($field);
 }
