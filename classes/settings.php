@@ -79,9 +79,9 @@ class TB_Settings {
 			if (!in_array($field, array_keys($this->fields)) || $value == $options[$field]) {
 				continue;
 			}
-			$this->options[$field] = $value;
+			$options[$field] = $value;
 		}
-		update_option($this->optionsName, serialize($options->fields));
+		update_option($this->optionsName, serialize($options));
     }
 }
 
