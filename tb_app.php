@@ -43,7 +43,7 @@ class TB_App {
 
         if (isset($name[1])) {
             $class_name = strtolower($name[1]);
-            $filename = dirname(__FILE__) . '/class/' . $class_name . '.php';
+            $filename = dirname(__FILE__) . '/classes/' . $class_name . '.php';
 
             if (file_exists($filename)) {
                 require_once $filename;
