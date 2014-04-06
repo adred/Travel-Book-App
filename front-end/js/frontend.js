@@ -35,8 +35,12 @@ jQuery(document).ready(function($){
             var origins = response.originAddresses;
             var destinations = response.destinationAddresses;
 
-            $('#distance').text(response.rows[0].elements[0].distance.text);
-            $('#hours').text(response.rows[0].elements[0].duration.text);
+            if ($('#distance').length) {
+                $('#distance').text(response.rows[0].elements[0].distance.text);
+            }
+            if ($('#hours').length) {
+                $('#hours').text(response.rows[0].elements[0].duration.text);
+            }
         }
     }
 });
