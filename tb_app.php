@@ -14,8 +14,6 @@ if (!class_exists('TB_App')) {
 
 class TB_App {
 
-    public $optionsName = 'tb_app_options'; 
-
     function __construct() {
         // Auto-load classes on demand
         spl_autoload_register(array($this, 'autoload'));
