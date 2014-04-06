@@ -22,7 +22,6 @@ class TB_App {
         add_action('admin_notices', array($this, 'admin_notices'));
 
         add_action('admin_init', array($this, 'admin_init'));
-        add_action('init', array($this, 'init'));
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('wp_footer', array($this, 'frontend_scripts'));
     }
@@ -59,18 +58,6 @@ class TB_App {
             $settings = new TB_Settings($_POST);
             $settings->save();
         } 
-    }
-
-    /**
-     * Initialize
-     *
-     * @access public
-     * @return void
-     */
-    public function init() {
-        new TB_Sedan();
-        new TB_Van();
-        new TB_Ajax();
     }
 
     /**
