@@ -5,7 +5,7 @@ if (!class_exists('TB_Van_Calculator')) {
 
 class TB_Van extends TB_Calculator {
 
-    public function calculate($origin, $destination, $pickupDate, $type, $babySeats) {
+    public function calculate($distance, $pickupDate, $type, $babySeats) {
     	
     }
 }

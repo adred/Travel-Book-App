@@ -8,7 +8,7 @@ class TB_Ajax {
     }
 
     public function calculate() {
-        check_ajax_referer( 'tb_nonce' );
+        check_ajax_referer('tb_nonce');
 
         if ($_POST['type'] == 'sedan') {
             $vehicle = new TB_Sedan();
@@ -17,7 +17,7 @@ class TB_Ajax {
             $vehicle = new TB_Van();
         }
 
-        $res = $vehicle->calculate($origin, $destination, $pickupDate, $type, $babySeats);
+        $res = $vehicle->calculate($distance, $pickupDate, $type, $babySeats);
 
         if (!$res) {
              echo json_encode(array(
