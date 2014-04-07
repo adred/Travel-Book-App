@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) exit; // Exit if accessed directly
+
+if (!class_exists('TB_Ajax')) {
 
 class TB_Ajax {
 
@@ -10,10 +13,10 @@ class TB_Ajax {
     public function calculate() {
         check_ajax_referer('tb_nonce');
 
-        if ($_POST['type'] == 'sedan') {
+        if ($_POST['vehicle_type'] == 'sedan') {
             $vehicle = new TB_Sedan();
         }
-        elseif ($_POST['type'] == 'van') {
+        elseif ($_POST['vehicle_type'] == 'van') {
             $vehicle = new TB_Van();
         }
 
@@ -29,9 +32,11 @@ class TB_Ajax {
 
         echo json_encode(array(
             'error' => false,
-            'quote' => '' // call to 
+            'quote' => $res
         ));
         exit;
     }
 
 }
+
+} // class_exists check

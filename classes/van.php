@@ -1,12 +1,34 @@
 <?php
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-if (!class_exists('TB_Van_Calculator')) {
+if (!class_exists('TB_Van')) {
 
 class TB_Van extends TB_Calculator {
 
     public function calculate($distance, $pickupDate, $type, $babySeats) {
+    	$this->pickupDate = $pickupDate;
+
+    	$firstKm = $this->options['van_first_km'];
+    	$next49 = $distance - 1 > 49 ? 49 * $this->options['van_next_49'] : ($distance - 1) * $this->options['van_next_49'];
+    	$after50 = max((($distance - 50) * $this->options['van_after_50']), 0);
+
+    	$additionalCost = ($this->options['baby_seat'] * $babySeats) + ($this->options['airport_pickup'] * $babySeats);
+    	$fare = $firstKm + $next49 + $after50 + $additionalCost;
     	
+    	if ($this->isSpecialDay()) {
+    		$finalFare = ($fare * ($this->specialDaySurcharge / 100)) + $fare;
+    	}
+    	elseif ($this->isPeakTime()) {
+    		$finalFare = ($fare * ($this->peakTimeSurcharge / 100)) + $fare;
+    	}
+    	elseif ($this->isOffPeakTime()) {
+    		$finalFare = $fare - ($fare * ($this->offPeakTimeDiscount / 100));
+    	}
+    	elseif ($this->isNightTime()) {
+    		$finalFare = ($fare * ($this->nightTimeSurcharge / 100)) + $fare;
+    	}
+
+    	return round($finalFare, 2);
     }
 }
 

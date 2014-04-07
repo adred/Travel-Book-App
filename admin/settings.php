@@ -25,15 +25,15 @@
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><label for="benz-first-km">1st Kilometer</label></th>
-					<td>$<input type="text" id="benz-first-km" name="benz_first_km" placeholder="base" value="<?php tb_field('benz_first_km') ?>" /></td>
+					<td>$<input type="text" id="benz-first-km" name="van_first_km" placeholder="base" value="<?php tb_field('van_first_km') ?>" /></td>
 				</tr>
 				<tr valign="top">
 					<th scope="row"><label for="benz-next-49">Next 49kms</label></th>
-					<td>$<input type="text" id="benz-next-49" name="benz_next_49" placeholder="per km" value="<?php tb_field('benz_next_49') ?>" /></td>
+					<td>$<input type="text" id="benz-next-49" name="van_next_49" placeholder="per km" value="<?php tb_field('van_next_49') ?>" /></td>
 				</tr>
 				<tr valign="top">
 					<th scope="row"><label for="benz-after-50">After 50 kms</label></th>
-					<td>$<input type="text" id="benz-after-50" name="benz_after_50" placeholder="per km" value="<?php tb_field('benz_after_50') ?>" /></td>
+					<td>$<input type="text" id="benz-after-50" name="van_after_50" placeholder="per km" value="<?php tb_field('van_after_50') ?>" /></td>
 				</tr>
 			</table>
 		</div>

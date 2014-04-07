@@ -7,38 +7,46 @@ abstract class TB_Calculator {
 
 	private $options = array();
 	private $time = '';
-	private $peakTime = '';
-	private $offPeakTime = '';
-	private $nightTime = '';
+	protected $specialDaySurcharge = '';
+	protected $peakTimeSurcharge = '';
+	protected $offPeakTimeDiscount = '';
+	protected $nightTimeSurcharge = '';
+	protected $pickupDate = '';
+
 
     function __construct() {
     	$settings = new TB_Settings();
     	$this->options = $settings->get();
-    	$this->time = startotime(date('m/d/Y'));
     }
 
     abstract function calculate($distance, $pickupDate, $type, $babySeats);
 
     protected function isSpecialDay() {
-    	if ($this->time >=strtotime($this->options['start_date_1']) && $this->time <=strtotime($this->options['end_date_1'])) {
+    	if (strtotime($this->pickupDate) >= strtotime($this->options['start_date_1']) && strtotime($this->pickupDate) <= strtotime($this->options['end_date_1'])) {
+    		$this->specialDaySurcharge = $this->options['surcharge_1'];
     		return true;
     	}
-    	elseif ($this->time >=strtotime($this->options['start_date_2']) && $this->time <=strtotime($this->options['end_date_2'])) {
+    	elseif (strtotime($this->pickupDate) >= strtotime($this->options['start_date_2']) && strtotime($this->pickupDate) <= strtotime($this->options['end_date_2'])) {
+    		$this->specialDaySurcharge = $this->options['surcharge_2'];
     		return true;
     	}
-    	elseif ($this->time >=strtotime($this->options['start_date_3']) && $this->time <=strtotime($this->options['end_date_3'])) {
+    	elseif (strtotime($this->pickupDate) >= strtotime($this->options['start_date_3']) && strtotime($this->pickupDate) <= strtotime($this->options['end_date_3'])) {
+    		$this->specialDaySurcharge = $this->options['surcharge_3'];
     		return true;
     	}
-    	elseif ($this->time >=strtotime($this->options['start_date_4']) && $this->time <=strtotime($this->options['end_date_4'])) {
+    	elseif (strtotime($this->pickupDate) >= strtotime($this->options['start_date_4']) && strtotime($this->pickupDate) <= strtotime($this->options['end_date_4'])) {
+    		$this->specialDaySurcharge = $this->options['surcharge_4'];
     		return true;
     	}
-    	elseif ($this->time >=strtotime($this->options['start_date_5']) && $this->time <=strtotime($this->options['end_date_5'])) {
+    	elseif (strtotime($this->pickupDate) >= strtotime($this->options['start_date_5']) && strtotime($this->pickupDate) <= strtotime($this->options['end_date_5'])) {
+    		$this->specialDaySurcharge = $this->options['surcharge_5'];
     		return true;
     	}
     }
 
     protected function isPeakTime() {
-    	if ($this->time >= strtotime(date('m/d/Y') . ' 04:00:00 AM') && $this->time <= strtotime(date('m/d/Y') . ' 10:00:00 AM')) {
+    	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 04:00:00 AM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 10:00:00 AM')) {
+    		$this->peakTimeSurcharge = $this->options['off_peak_time'];
     		return true;
     	}
     	else {
@@ -47,7 +55,8 @@ abstract class TB_Calculator {
     }
 
     protected function isOffPeakTime() {
-    	if ($this->time >= strtotime(date('m/d/Y') . ' 11:00:00 AM') && $this->time <= strtotime(date('m/d/Y') . ' 02:59:00 PM')) {
+    	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 11:00:00 AM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 02:59:00 PM')) {
+    		$this->offPeakTimeDiscount = $this->options['peak_time'];
     		return true;
     	}
     	else {
@@ -56,7 +65,8 @@ abstract class TB_Calculator {
     }
 
     protected function isNightTime() {
-    	if ($this->time >= strtotime(date('m/d/Y') . ' 11:00:00 PM') && $this->time <= strtotime(date('m/d/Y') . ' 03:59:00 AM')) {
+    	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 11:00:00 PM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 03:59:00 AM')) {
+    		$this->nightTimeSurcharge = $this->options['night_time'];
     		return true;
     	}
     	else {
