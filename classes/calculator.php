@@ -5,8 +5,7 @@ if (!class_exists('TB_Calculator')) {
 
 abstract class TB_Calculator {
 
-	private $options = array();
-	private $time = '';
+	protected $options = array();
 	protected $specialDaySurcharge = '';
 	protected $peakTimeSurcharge = '';
 	protected $offPeakTimeDiscount = '';

@@ -21,6 +21,7 @@ class TB_App {
         // Admin notices
         add_action('admin_notices', array($this, 'admin_notices'));
 
+        add_action('init', array($this, 'init'));
         add_action('admin_init', array($this, 'admin_init'));
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('wp_footer', array($this, 'frontend_scripts'));
@@ -45,6 +46,16 @@ class TB_App {
                 require_once $filename;
             }
         }
+    }
+
+    /**
+     * Initialize
+     *
+     * @access public
+     * @return void
+     */
+    public function init() {
+        new TB_Ajax();
     }
     
     /**
@@ -79,7 +90,6 @@ class TB_App {
      * Load all the plugin scripts and styles only for the front-end
      */
     public function frontend_scripts() {
-        wp_enqueue_script('google_maps_api', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
         wp_enqueue_script('tb_app_frontend', plugins_url('front-end/js/frontend.js', __FILE__ ));
 
         wp_localize_script('tb_app_frontend', 'TB_APP_Vars_Frontend', array(

@@ -12,20 +12,20 @@ class TB_Van extends TB_Calculator {
     	$next49 = $distance - 1 > 49 ? 49 * $this->options['van_next_49'] : ($distance - 1) * $this->options['van_next_49'];
     	$after50 = max((($distance - 50) * $this->options['van_after_50']), 0);
 
-    	$additionalCost = ($this->options['baby_seat'] * $babySeats) + ($this->options['airport_pickup'] * $babySeats);
-    	$fare = $firstKm + $next49 + $after50 + $additionalCost;
+    	$additionalCost = ($this->options['baby_seat'] * $babySeats) + $this->options['airport_pickup'];
+    	$finalFare = $firstKm + $next49 + $after50 + $additionalCost;
     	
     	if ($this->isSpecialDay()) {
-    		$finalFare = ($fare * ($this->specialDaySurcharge / 100)) + $fare;
+    		$finalFare = ($finalFare * ($this->specialDaySurcharge / 100)) + $finalFare;
     	}
     	elseif ($this->isPeakTime()) {
-    		$finalFare = ($fare * ($this->peakTimeSurcharge / 100)) + $fare;
+    		$finalFare = ($finalFare * ($this->peakTimeSurcharge / 100)) + $finalFare;
     	}
     	elseif ($this->isOffPeakTime()) {
-    		$finalFare = $fare - ($fare * ($this->offPeakTimeDiscount / 100));
+    		$finalFare = $finalFare - ($finalFare * ($this->offPeakTimeDiscount / 100));
     	}
     	elseif ($this->isNightTime()) {
-    		$finalFare = ($fare * ($this->nightTimeSurcharge / 100)) + $fare;
+    		$finalFare = ($finalFare * ($this->nightTimeSurcharge / 100)) + $finalFare;
     	}
 
     	return round($finalFare, 2);

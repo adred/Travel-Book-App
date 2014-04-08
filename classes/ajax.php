@@ -11,24 +11,24 @@ class TB_Ajax {
     }
 
     public function calculate() {
-        check_ajax_referer('tb_nonce');
+        check_ajax_referer('tb_app_frontend_nonce');
 
-        if ($_POST['vehicle_type'] == 'sedan') {
+        if ($_POST['vehicleType'] == 'sedan') {
             $vehicle = new TB_Sedan();
         }
-        elseif ($_POST['vehicle_type'] == 'van') {
+        elseif ($_POST['vehicleType'] == 'van') {
             $vehicle = new TB_Van();
         }
 
-        $res = $vehicle->calculate($distance, $pickupDate, $type, $babySeats);
+        $res = $vehicle->calculate($_POST['distance'], $_POST['pickupDate'], $_POST['vehicleType'], $_POST['babySeats']);
 
-        if (!$res) {
-             echo json_encode(array(
-                'error' => true,
-                'quote' => 'calculate() failed...'
-            ));
-            exit;
-        }
+        // if (!$res) {
+        //      echo json_encode(array(
+        //         'error' => true,
+        //         'message' => 'calculate() failed...'
+        //     ));
+        //     exit;
+        // }
 
         echo json_encode(array(
             'error' => false,
