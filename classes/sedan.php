@@ -9,7 +9,7 @@ class TB_Sedan extends TB_Calculator {
     	$this->pickupDate = $pickupDate;
 
     	$firstKm = $this->options['sedan_first_km'];
-    	$next49 = $distance - 1 > 49 ? 49 * $this->options['sedan_next_49'] : ($distance - 1) * $this->options['sedan_next_49'];
+    	$next49 = $$distance > 1 ? ($distance - 1 > 49 ? 49 * $this->options['sedan_next_49'] : ($distance - 1) * $this->options['sedan_next_49']) : 0;
     	$after50 = max((($distance - 50) * $this->options['sedan_after_50']), 0);
 
     	$additionalCost = ($this->options['baby_seat'] * $babySeats) + $this->options['airport_pickup'];

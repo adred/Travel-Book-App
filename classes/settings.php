@@ -34,6 +34,7 @@ class TB_Settings {
 		'surcharge_5' => '',
 		'baby_seat' => '',
 		'airport_pickup' => '',
+		'admin_email' => '',
 	);
 
     public function __construct($data = array()) {

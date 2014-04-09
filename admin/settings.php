@@ -103,6 +103,15 @@
 				</tr>
 			</table>
 		</div>
+		<div class="tool-box">
+			<h3>Contacts</h3>
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row"><label for="admin-email">Administrator email address</label></th>
+					<td><input type="text" id="admin-email" name="admin_email" placeholder="email adress" value="<?php tb_field('admin_email') ?>" /></td>
+				</tr>
+			</table>
+		</div>
 		<p class="submit"><input name="submit" id="submit" class="button button-primary" value="Save Changes" type="submit"></p>
 	</form>
 </div>
