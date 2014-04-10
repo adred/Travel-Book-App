@@ -22,13 +22,13 @@ class TB_Ajax {
 
         $res = $vehicle->calculate($_POST['distance'], $_POST['pickupDate'], $_POST['vehicleType'], $_POST['babySeats']);
 
-        // if (!$res) {
-        //      echo json_encode(array(
-        //         'error' => true,
-        //         'message' => 'calculate() failed...'
-        //     ));
-        //     exit;
-        // }
+        if (!$res) {
+             echo json_encode(array(
+                'error' => true,
+                'message' => 'calculate() failed...'
+            ));
+            exit;
+        }
 
         echo json_encode(array(
             'error' => false,
