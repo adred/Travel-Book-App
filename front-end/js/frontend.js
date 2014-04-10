@@ -3,35 +3,45 @@ jQuery(document).ready(function($){
     var geocoder;
     var bounds = new google.maps.LatLngBounds();
 
-    var origin;
-    var destination;
+    var requiredFields = [
+        $("#origin"), 
+        $("#destination"), 
+        $("#pickup-date"),
+        $("#vehicle-type"),
+        $("#baby-seats")
+    ];
 
-    $("#calculate").on("click", function(e){
-        e.preventDefault();
-        // origin = $("#origin").val();
-        // destination = $("#destination").val();
-        // pickupDate = $("#pickup-date").val();
-        // vehicleType = $("#vehicle-type").val();
-        // babySeats = $("#baby-seats").val();
-
-        //calculateDistance();
+    $("#vehicle-type, #baby-seats").on("change", function(){
+        count = 0;
+        $.map(requiredFields, function(obj){
+            if (obj.val()) {
+                ++count
+            }
+            if (count == requiredFields.length) {
+                calculateDistance();
+            }
+        });
     });
 
-    origin = 'Vancouver, BC, Canada';
-    destination ='Victoria, BC, Canada';
-    pickupDate = '04/21/2014';
-    vehicleType = 'sedan';
-    babySeats = 1;
+    $("#origin, #destination, #pickup-date").on("focusout", function(){
+        count = 0;
+        $.map(requiredFields, function(obj){
+            if (obj.val()) {
+                ++count;
+            }
+            if (count == requiredFields.length) {
+                calculateDistance();
+            }
+        });
+    })
 
-    calculateDistance();
 
     function calculateDistance() {
         var service = new google.maps.DistanceMatrixService
 
-        service.getDistanceMatrix(
-        {
-            origins: [origin],
-            destinations: [destination],
+        service.getDistanceMatrix({
+            origins: [$("#origin").val()],
+            destinations: [$("#destination").val()],
             travelMode: google.maps.TravelMode.DRIVING,
             unitSystem: google.maps.UnitSystem.METRIC,
             avoidHighways: false,
@@ -46,23 +56,21 @@ jQuery(document).ready(function($){
             var distance = response.rows[0].elements[0].distance.text.split(" ")[0];
             var data = {
                     "distance": distance,
-                    "pickupDate": pickupDate,
-                    "vehicleType": vehicleType,
-                    "babySeats": 1,
+                    "pickupDate": $("#pickup-date").val(),
+                    "vehicleType": $("#vehicle-type").val(),
+                    "babySeats": $("#baby-seats").val(),
                     "action": "tb_calculate",
                     "_wpnonce": TB_APP_Vars_Frontend.nonce
                 };
 
             $.post(TB_APP_Vars_Frontend.ajaxurl, data, function(res) {
-                //res = $.parseJSON(res);
+                res = $.parseJSON(res);
 
-                console.log(res);
-
-                // if (!res.error) {
-                //     console.log(res.quote);
-                // } else {
-                //     console.log(res.message);
-                // }
+                if (!res.error) {
+                    $("#quote-result-right").text("$" + res.quote);
+                } else {
+                    console.log(res.message);
+                }
             });
         }
     }

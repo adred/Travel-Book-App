@@ -25,6 +25,8 @@ class TB_App {
         add_action('admin_init', array($this, 'admin_init'));
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('wp_footer', array($this, 'frontend_scripts'));
+
+        add_shortcode('booking_form', array($this, 'booking_form'));
     }
 
 
@@ -90,6 +92,7 @@ class TB_App {
      * Load all the plugin scripts and styles only for the front-end
      */
     public function frontend_scripts() {
+        wp_enqueue_script('gm_api', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
         wp_enqueue_script('tb_app_frontend', plugins_url('front-end/js/frontend.js', __FILE__ ));
 
         wp_localize_script('tb_app_frontend', 'TB_APP_Vars_Frontend', array(
@@ -130,6 +133,17 @@ class TB_App {
             </div>
             <?php 
         }
+    }
+
+    /**
+     * Booking form
+     *
+     * @return mixed
+     */
+    public function booking_form($atts) {
+        ob_start(); 
+        include_once plugin_dir_path(__FILE__) . 'front-end/booking_form.php';
+        return ob_get_clean();
     }
 
 }
