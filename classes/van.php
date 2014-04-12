@@ -9,7 +9,7 @@ class TB_Van extends TB_Calculator {
     	$this->pickupDate = $pickupDate;
 
     	$firstKm = $this->options['van_first_km'];
-    	$next49 = $$distance > 1 ? ($distance - 1 > 49 ? 49 * $this->options['van_next_49'] : ($distance - 1) * $this->options['van_next_49']) : 0;
+    	$next49 = $distance > 1 ? ($distance - 1 > 49 ? 49 * $this->options['van_next_49'] : ($distance - 1) * $this->options['van_next_49']) : 0;
     	$after50 = max((($distance - 50) * $this->options['van_after_50']), 0);
 
     	$additionalCost = ($this->options['baby_seat'] * $babySeats) + $this->options['airport_pickup'];
@@ -28,7 +28,7 @@ class TB_Van extends TB_Calculator {
     		$finalFare = ($finalFare * ($this->nightTimeSurcharge / 100)) + $finalFare;
     	}
 
-    	return round($finalFare, 2);
+    	return max($this->roundOff($finalFare), $this->options['van_min_fare']);
     }
 }
 

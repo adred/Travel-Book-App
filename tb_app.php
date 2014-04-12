@@ -89,17 +89,17 @@ class TB_App {
     }
 
     /**
-     * Load all the plugin scripts and styles only for the front-end
+     * Load all the plugin scripts and styles only for the frontend
      */
     public function frontend_scripts() {
         wp_enqueue_script('gm_api', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
-        wp_enqueue_script('tb_app_frontend', plugins_url('front-end/js/frontend.js', __FILE__ ));
+        wp_enqueue_script('tb_app_frontend', plugins_url('frontend/js/frontend.js', __FILE__ ));
 
         wp_localize_script('tb_app_frontend', 'TB_APP_Vars_Frontend', array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tb_app_frontend_nonce'),
         ));
-        wp_enqueue_style('tp_app_frontend', plugins_url('front-end/css/frontend.css', __FILE__ ));
+        wp_enqueue_style('tp_app_frontend', plugins_url('frontend/css/frontend.css', __FILE__ ));
     }
 
     /**
@@ -142,7 +142,7 @@ class TB_App {
      */
     public function booking_form($atts) {
         ob_start(); 
-        include_once plugin_dir_path(__FILE__) . 'front-end/booking_form.php';
+        include_once plugin_dir_path(__FILE__) . 'frontend/booking_form.php';
         return ob_get_clean();
     }
 

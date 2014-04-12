@@ -7,7 +7,11 @@
 			<h3>Sedan [Holder Caprice or Similar]</h3>
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row"><label for="sedan-first-km">1st km</label></th>
+					<th scope="row"><label for="sedan-min-fare">Minimun fare</label></th>
+					<td>$<input type="text" id="sedan-min-fare" name="sedan_min_fare" placeholder="minimun fare" value="<?php tb_field('sedan_min_fare') ?>" /></td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><label for="sedan-first-km">1st Kilometer</label></th>
 					<td>$<input type="text" id="sedan-first-km" name="sedan_first_km" placeholder="base" value="<?php tb_field('sedan_first_km') ?>" /></td>
 				</tr>
 				<tr valign="top">
@@ -23,6 +27,10 @@
 		<div class="tool-box">
 			<h3>Van [Mercedes Benz Viaro or Similar]</h3>
 			<table class="form-table">
+				<tr valign="top">
+					<th scope="row"><label for="van-min-fare">Minimun fare</label></th>
+					<td>$<input type="text" id="van-min-fare" name="van_min_fare" placeholder="minimun fare" value="<?php tb_field('van_min_fare') ?>" /></td>
+				</tr>
 				<tr valign="top">
 					<th scope="row"><label for="benz-first-km">1st Kilometer</label></th>
 					<td>$<input type="text" id="benz-first-km" name="van_first_km" placeholder="base" value="<?php tb_field('van_first_km') ?>" /></td>

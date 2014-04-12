@@ -45,7 +45,7 @@ abstract class TB_Calculator {
 
     protected function isPeakTime() {
     	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 04:00:00 AM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 10:00:00 AM')) {
-    		$this->peakTimeSurcharge = $this->options['off_peak_time'];
+    		$this->peakTimeSurcharge = $this->options['peak_time'];
     		return true;
     	}
     	else {
@@ -55,7 +55,7 @@ abstract class TB_Calculator {
 
     protected function isOffPeakTime() {
     	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 11:00:00 AM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 02:59:00 PM')) {
-    		$this->offPeakTimeDiscount = $this->options['peak_time'];
+    		$this->offPeakTimeDiscount = $this->options['off_peak_time'];
     		return true;
     	}
     	else {
@@ -71,6 +71,25 @@ abstract class TB_Calculator {
     	else {
     		return false;
     	}
+    }
+
+    protected function roundOff($val) {
+        $parts = explode('.', number_format($val, 2));
+        if (intval($parts[1]) % 5 == 0) {
+            return $parts[0] . "." . $parts[1]; 
+        } 
+        else {
+            return $parts[0] . "." . $this->findDivisibleByFive(intval($parts[1]));
+        }
+    }
+
+    protected function findDivisibleByFive($val) {
+        if (++$val % 5 == 0) {
+            return $val;
+        }
+        else {
+            return $this->findDivisibleByFive($val);
+        }
     }
 }
 

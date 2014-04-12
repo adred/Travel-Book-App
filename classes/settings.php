@@ -8,9 +8,11 @@ class TB_Settings {
 	private $optionsName = 'tb_app_options';
 	private $data = array();
 	private $fields = array(
+		'sedan_min_fare' => '',
 		'sedan_first_km' => '',
 		'sedan_next_49' => '',
 		'sedan_after_50' => '',
+		'van_min_fare' => '',
 		'van_first_km' => '',
 		'van_next_49' => '',
 		'van_after_50' => '',
