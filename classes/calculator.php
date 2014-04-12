@@ -74,12 +74,14 @@ abstract class TB_Calculator {
     }
 
     protected function roundOff($val) {
-        $parts = explode('.', number_format($val, 2));
+        $val = number_format(round($val, 2), 2);
+        $parts = explode('.', $val);
+
         if (intval($parts[1]) % 5 == 0) {
-            return $parts[0] . "." . $parts[1]; 
+            return $val;
         } 
         else {
-            return $parts[0] . "." . $this->findDivisibleByFive(intval($parts[1]));
+            return $parts[0] . '.' . $this->findDivisibleByFive(intval($parts[1]));
         }
     }
 
