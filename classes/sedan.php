@@ -18,10 +18,13 @@ class TB_Sedan extends TB_Calculator {
     	$additionalCost = ($this->options['baby_seat'] * $this->babySeats) + $pickupCharge;
     	$finalFare = $firstKm + $next49 + $after50 + $additionalCost;
 
+        $finalFare = $this->roundOff($finalFare);
+
     	if ($this->isSpecialDay()) {
     		$finalFare = ($finalFare * ($this->specialDaySurcharge / 100)) + $finalFare;
     	}
-    	elseif ($this->isPeakTime()) {
+
+        if ($this->isPeakTime()) {
     		$finalFare = ($finalFare * ($this->peakTimeSurcharge / 100)) + $finalFare;
     	}
     	elseif ($this->isOffPeakTime()) {
@@ -31,7 +34,9 @@ class TB_Sedan extends TB_Calculator {
     		$finalFare = ($finalFare * ($this->nightTimeSurcharge / 100)) + $finalFare;
     	}
 
-        return max($this->roundOff($finalFare), $this->options['sedan_min_fare']);
+        $finalFare = $this->roundOff($finalFare);
+
+        return max($finalFare,  $this->options['sedan_min_fare']);
     }
 }
 

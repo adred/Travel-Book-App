@@ -64,16 +64,22 @@ abstract class TB_Calculator {
     }
 
     protected function isPeakTime() {
-    	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 04:00:00 AM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 10:00:00 AM')) {
+        $parts = explode(' ', $this->pickupDate);
+    	if (strtotime($this->pickupDate) >= strtotime($parts[0] . ' 04:00:00 AM') && strtotime($this->pickupDate) <= strtotime($parts[0] . ' 10:00:00 AM')) {
     		$this->peakTimeSurcharge = $this->options['peak_time'];
     		return true;
     	}
+        elseif (strtotime($this->pickupDate) >= strtotime($parts[0] . ' 03:00:00 PM') && strtotime($this->pickupDate) <= strtotime($parts[0] . ' 10:00:00 PM')) {
+            $this->peakTimeSurcharge = $this->options['peak_time'];
+            return true;
+        }
     	
         return false;
     }
 
     protected function isOffPeakTime() {
-    	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 11:00:00 AM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 02:59:00 PM')) {
+        $parts = explode(' ', $this->pickupDate);
+    	if (strtotime($this->pickupDate) >= strtotime($parts[0] . ' 11:00:00 AM') && strtotime($this->pickupDate) <= strtotime($parts[0] . ' 02:59:00 PM')) {
     		$this->offPeakTimeDiscount = $this->options['off_peak_time'];
     		return true;
     	}
@@ -82,10 +88,15 @@ abstract class TB_Calculator {
     }
 
     protected function isNightTime() {
-    	if (strtotime($this->pickupDate) >= strtotime(date('m/d/Y') . ' 11:00:00 PM') && strtotime($this->pickupDate) <= strtotime(date('m/d/Y') . ' 03:59:00 AM')) {
+        $parts = explode(' ', $this->pickupDate);
+    	if (strtotime($this->pickupDate) >= strtotime('-1 day', strtotime($parts[0] . ' 10:00:00 PM')) && strtotime($this->pickupDate) <= strtotime($parts[0] . ' 03:59:00 AM')) {
     		$this->nightTimeSurcharge = $this->options['night_time'];
     		return true;
     	}
+        elseif (strtotime($this->pickupDate) >= strtotime($parts[0] . ' 10:00:00 PM') && strtotime($this->pickupDate) <= strtotime('+1 day', strtotime($parts[0] . ' 10:00:00 PM'))) {
+            $this->nightTimeSurcharge = $this->options['night_time'];
+            return true;
+        }
     	
         return false;
     }
@@ -119,7 +130,7 @@ abstract class TB_Calculator {
         if (++$val % 5 == 0) {
             return $val;
         }
-        
+
         return $this->findDivisibleByFive($val);
     }
 
