@@ -57,6 +57,8 @@ jQuery(document).ready(function($){
             var data = {
                     "distance": distance,
                     "pickupDate": $("#pickup-date").val(),
+                    "airport": "Melbourne",
+                    "airportType": "International",
                     "vehicleType": $("#vehicle-type").val(),
                     "babySeats": $("#baby-seats").val(),
                     "action": "tb_calculate",

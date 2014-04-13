@@ -5,20 +5,39 @@ if (!class_exists('TB_Calculator')) {
 
 abstract class TB_Calculator {
 
-	protected $options = array();
-	protected $specialDaySurcharge = '';
-	protected $peakTimeSurcharge = '';
-	protected $offPeakTimeDiscount = '';
-	protected $nightTimeSurcharge = '';
-	protected $pickupDate = '';
+    private $distance = '';
+    private $pickupDate = '';
+    private $airport = '';
+    private $airportType = '';
+    private $vehicleType = '';
+    private $babySeats = '';
+	private $options = array();
+	private $specialDaySurcharge = '';
+	private $peakTimeSurcharge = '';
+	private $offPeakTimeDiscount = '';
+	private $nightTimeSurcharge = '';
 
+    private $airportsWithCharge = array();
 
     function __construct() {
     	$settings = new TB_Settings();
     	$this->options = $settings->get();
+        $this->airportsWithCharge = array('Melbourne', 'Tullamarine');
     }
 
-    abstract function calculate($distance, $pickupDate, $type, $babySeats);
+    abstract function calculate();
+
+    public function __set($var, $val) {
+       if (property_exists($this, $var)) {
+            $this->$var = $val;
+       }
+    }
+
+    public function __get($var) {
+       if (property_exists($this, $var)) {
+            return $this->$var;
+       }
+    }
 
     protected function isSpecialDay() {
     	if (strtotime($this->pickupDate) >= strtotime($this->options['start_date_1']) && strtotime($this->pickupDate) <= strtotime($this->options['end_date_1'])) {
@@ -71,6 +90,16 @@ abstract class TB_Calculator {
     	else {
     		return false;
     	}
+    }
+
+    protected function addPickupCharge() {
+        foreach ($this->airportsWithCharge as $airport) {
+            if (strpos($this->airport, $airport) !== false && strtolower($this->airportType) == 'international') {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function roundOff($val) {

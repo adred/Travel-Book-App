@@ -20,7 +20,13 @@ class TB_Ajax {
             $vehicle = new TB_Van();
         }
 
-        $res = $vehicle->calculate($_POST['distance'], $_POST['pickupDate'], $_POST['vehicleType'], $_POST['babySeats']);
+        $vehicle->distance = $_POST['distance'];
+        $vehicle->pickupDate = $_POST['pickupDate'];
+        $vehicle->airport = $_POST['airport'];
+        $vehicle->airportType = $_POST['airportType'];
+        $vehicle->vehicleType = $_POST['vehicleType'];
+        $vehicle->babySeats = $_POST['babySeats'];
+        $res = $vehicle->calculate();
 
         if (!$res) {
              echo json_encode(array(

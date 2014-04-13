@@ -1,0 +1,28 @@
+#primary {
+	background-color: #242841 !important;
+}
+
+#booking-form h2, 
+#booking-form h3,
+#booking-form p,
+#booking-form span,
+#booking-form a {
+	font-family: "Open Sans";
+}
+
+#booking-form {
+	background-color: #1B1E2F;
+}
+
+#booking-form header,
+#booking-form footer {
+	background-color: #fff;
+}
+
+#booking-form p {
+	margin: 1px;
+}
+
+#booking-form footer #book-now {
+	background-color: #7C4096;
+}

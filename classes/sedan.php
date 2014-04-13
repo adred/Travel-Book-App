@@ -5,16 +5,15 @@ if (!class_exists('TB_Sedan')) {
 
 class TB_Sedan extends TB_Calculator {
 
-    public function calculate($distance, $pickupDate, $type, $babySeats) {
-    	$this->pickupDate = $pickupDate;
-
+    public function calculate() {
     	$firstKm = $this->options['sedan_first_km'];
-    	$next49 = $distance > 1 ? ($distance - 1 > 49 ? 49 * $this->options['sedan_next_49'] : ($distance - 1) * $this->options['sedan_next_49']) : 0;
-    	$after50 = max((($distance - 50) * $this->options['sedan_after_50']), 0);
+    	$next49 = $this->distance > 1 ? ($this->distance - 1 > 49 ? 49 * $this->options['sedan_next_49'] : ($this->distance - 1) * $this->options['sedan_next_49']) : 0;
+    	$after50 = max((($this->distance - 50) * $this->options['sedan_after_50']), 0);
+        $pickupCharge = $this->addPickupCharge() ? $this->options['airport_pickup'] : 0;
 
-    	$additionalCost = ($this->options['baby_seat'] * $babySeats) + $this->options['airport_pickup'];
+    	$additionalCost = ($this->options['baby_seat'] * $this->babySeats) + $pickupCharge;
     	$finalFare = $firstKm + $next49 + $after50 + $additionalCost;
-    	
+
     	if ($this->isSpecialDay()) {
     		$finalFare = ($finalFare * ($this->specialDaySurcharge / 100)) + $finalFare;
     	}
