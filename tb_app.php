@@ -131,7 +131,7 @@ class TB_App {
         if ($_POST['tb_app_settings_saved'] == true) {
             $errors = $this->settings->errors();
             if ($errors) { ?>
-                <div class="updated">
+                <div class="error">
                     <p>Settings saved but with errors. Please correct the following:</p>
                     <?php echo $errors; ?>
                 </div>
