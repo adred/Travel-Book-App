@@ -11,12 +11,12 @@ abstract class TB_Calculator {
     private $airportType = '';
     private $vehicleType = '';
     private $babySeats = '';
-	private $options = array();
 	private $specialDaySurcharge = '';
 	private $peakTimeSurcharge = '';
 	private $offPeakTimeDiscount = '';
 	private $nightTimeSurcharge = '';
 
+    private $options = array();
     private $airportsWithCharge = array();
 
     function __construct() {

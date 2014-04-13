@@ -38,6 +38,7 @@ class TB_Settings {
 		'airport_pickup' => '',
 		'admin_email' => '',
 	);
+	private $errors = array();
 
     public function __construct($data = array()) {
     	if ($data) {
@@ -73,6 +74,11 @@ class TB_Settings {
 			if (!in_array($field, array_keys($this->fields))) {
 				continue;
 			}
+			if (strpos($field, 'start_date') !== false) {
+				if (!$this->isEndDateCorrect($field, $value) || !$this->isStartDateCorrect($value)) {
+					continue;
+				}
+			}
 			$this->fields[$field] = $value;
 		}
 		update_option($this->optionsName, serialize($this->fields));
@@ -84,10 +90,52 @@ class TB_Settings {
 			if (!in_array($field, array_keys($this->fields)) || $value == $options[$field]) {
 				continue;
 			}
+			if (strpos($field, 'start_date') !== false) {
+				if (!$this->isEndDateCorrect($field, $value) || !$this->isStartDateCorrect($value)) {
+					continue;
+				}
+			}
 			$options[$field] = $value;
 		}
 		update_option($this->optionsName, serialize($options));
     }
+
+    public function isStartDateCorrect($value) {
+    	if (strtotime($value) < strtotime('+2 hours')) {
+    		$this->errors[] = 'Start date cannot be less than 2 hours from now.';
+    		return false;
+    	}
+
+    	return true;
+    }
+
+    public function isEndDateCorrect($field, $value) {
+    	$parts = explode('_', $field);
+
+    	if (strtotime($value) > strtotime($this->data['end_date_' . $parts[2]])) {
+    		$this->errors[] = 'End date cannot be before the start date.';
+    		return false;
+    	}
+
+    	return true;
+    }
+
+    public function errors() {
+    	if (!$this->errors) {
+    		return false;
+    	}
+
+    	$errors = '<ul>';
+        if ($this->errors) {
+            foreach ($this->errors as $error) {
+                $errors .= '<li>'. $error .'</li>';
+            }
+        }
+        $errors .= '</ul>';
+
+        return $errors;
+    }
+
 }
 
 } // class_exists check

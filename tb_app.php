@@ -14,6 +14,8 @@ if (!class_exists('TB_App')) {
 
 class TB_App {
 
+    public $settings = null;
+
     function __construct() {
         // Auto-load classes on demand
         spl_autoload_register(array($this, 'autoload'));
@@ -68,8 +70,8 @@ class TB_App {
      */
     public function admin_init() {
         if (isset($_POST['tb_nonce']) && wp_verify_nonce($_POST['tb_nonce'], 'tb_settings_save')) {
-            $settings = new TB_Settings($_POST);
-            $settings->save();
+            $this->settings = new TB_Settings($_POST);
+            $this->settings->save();
         } 
     }
 
@@ -127,11 +129,20 @@ class TB_App {
      */
     public function admin_notices() {
         if ($_POST['tb_app_settings_saved'] == true) {
-            ?>
-            <div class="updated">
-                <p>Settings saved...</p>
-            </div>
-            <?php 
+            $errors = $this->settings->errors();
+            if ($errors) { ?>
+                <div class="updated">
+                    <p>Settings saved but with errors. Please correct the following:</p>
+                    <p><?php echo $errors; ?></p>
+                </div>
+                <?php 
+            }
+            else { ?>
+                <div class="updated">
+                    <p>Settings saved...</p>
+                </div>
+                <?php 
+            }
         }
     }
 
