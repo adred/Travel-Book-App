@@ -7,6 +7,7 @@ class TB_Settings {
 
 	private $optionsName = 'tb_app_options';
 	private $data = array();
+	public $errors = array();
 	private $fields = array(
 		'sedan_min_fare' => '',
 		'sedan_first_km' => '',
@@ -38,7 +39,6 @@ class TB_Settings {
 		'airport_pickup' => '',
 		'admin_email' => '',
 	);
-	public $errors = array();
 
     public function __construct($post = array()) {
     	if ($post) {
