@@ -133,7 +133,7 @@ class TB_App {
             if ($errors) { ?>
                 <div class="updated">
                     <p>Settings saved but with errors. Please correct the following:</p>
-                    <p><?php echo $errors; ?></p>
+                    <?php echo $errors; ?>
                 </div>
                 <?php 
             }
