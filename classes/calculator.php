@@ -5,9 +5,9 @@ if (!class_exists('TB_Calculator')) {
 
 abstract class TB_Calculator {
 
+    private $origin = '';
     private $distance = '';
     private $pickupDate = '';
-    private $airport = '';
     private $airportType = '';
     private $vehicleType = '';
     private $babySeats = '';
@@ -23,7 +23,7 @@ abstract class TB_Calculator {
     function __construct() {
     	$settings = new TB_Settings();
     	$this->options = $settings->get();
-        $this->airportsWithCharge = array('Melbourne', 'Tullamarine');
+        $this->airportsWithCharge = array('Melbourne Airport', 'Tullamarine Airport');
     }
 
     abstract function calculate();
@@ -68,9 +68,8 @@ abstract class TB_Calculator {
     		$this->peakTimeSurcharge = $this->options['peak_time'];
     		return true;
     	}
-    	else {
-    		return false;
-    	}
+    	
+        return false;
     }
 
     protected function isOffPeakTime() {
@@ -78,9 +77,8 @@ abstract class TB_Calculator {
     		$this->offPeakTimeDiscount = $this->options['off_peak_time'];
     		return true;
     	}
-    	else {
-    		return false;
-    	}
+    	
+        return false;
     }
 
     protected function isNightTime() {
@@ -88,14 +86,13 @@ abstract class TB_Calculator {
     		$this->nightTimeSurcharge = $this->options['night_time'];
     		return true;
     	}
-    	else {
-    		return false;
-    	}
+    	
+        return false;
     }
 
     protected function addPickupCharge() {
         foreach ($this->airportsWithCharge as $airport) {
-            if (strpos($this->airport, $airport) !== false && strtolower($this->airportType) == 'international') {
+            if (strpos(ucfirst($this->origin), $airport) !== false && strtolower($this->airportType) == 'international') {
                 return true;
             }
         }
@@ -110,18 +107,20 @@ abstract class TB_Calculator {
         if (intval($parts[1]) % 5 == 0) {
             return $val;
         } 
-        else {
-            return $parts[0] . '.' . $this->findDivisibleByFive(intval($parts[1]));
+
+        $dec = $this->findDivisibleByFive(intval($parts[1]));
+        if ($dec == 100) {
+            return (intval($parts[0]) + 1) . '.00';
         }
+        return $parts[0] . '.' . $dec;
     }
 
     protected function findDivisibleByFive($val) {
         if (++$val % 5 == 0) {
             return $val;
         }
-        else {
-            return $this->findDivisibleByFive($val);
-        }
+        
+        return $this->findDivisibleByFive($val);
     }
 
     public function isPickupDateCorrect() {

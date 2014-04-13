@@ -56,8 +56,8 @@ jQuery(document).ready(function($){
             var distance = response.rows[0].elements[0].distance.text.split(" ")[0];
             var data = {
                     "distance": distance,
+                    "origin": $("#origin").val(),
                     "pickupDate": $("#pickup-date").val(),
-                    "airport": "Melbourne",
                     "airportType": "International",
                     "vehicleType": $("#vehicle-type").val(),
                     "babySeats": $("#baby-seats").val(),
