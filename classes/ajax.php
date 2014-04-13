@@ -31,7 +31,7 @@ class TB_Ajax {
         if (!$res) {
              echo json_encode(array(
                 'error' => true,
-                'message' => 'calculate() failed...'
+                'message' => $vehicle->errors
             ));
             exit;
         }

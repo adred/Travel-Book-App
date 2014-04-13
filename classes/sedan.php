@@ -6,6 +6,10 @@ if (!class_exists('TB_Sedan')) {
 class TB_Sedan extends TB_Calculator {
 
     public function calculate() {
+        if (!$this->isPickupDateCorrect()) {
+            return false;
+        }
+
     	$firstKm = $this->options['sedan_first_km'];
     	$next49 = $this->distance > 1 ? ($this->distance - 1 > 49 ? 49 * $this->options['sedan_next_49'] : ($this->distance - 1) * $this->options['sedan_next_49']) : 0;
     	$after50 = max((($this->distance - 50) * $this->options['sedan_after_50']), 0);

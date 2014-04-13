@@ -79,11 +79,6 @@ class TB_Settings {
 					continue;
 				}
 			}
-			if (strpos($field, 'start_date') !== false) {
-				if (!$this->isStartDateCorrect($value)) {
-					continue;
-				}
-			}
 			$this->fields[$field] = $value;
 		}
 		update_option($this->optionsName, serialize($this->fields));
@@ -100,23 +95,9 @@ class TB_Settings {
 					continue;
 				}
 			}
-			if (strpos($field, 'start_date') !== false) {
-				if (!$this->isStartDateCorrect($value)) {
-					continue;
-				}
-			}
 			$options[$field] = $value;
 		}
 		update_option($this->optionsName, serialize($options));
-    }
-
-    public function isStartDateCorrect($value) {
-    	if (strtotime($value) < strtotime('+2 hours')) {
-    		$this->errors[] = 'Start date cannot be less than 2 hours from now.';
-    		return false;
-    	}
-
-    	return true;
     }
 
     public function isEndDateCorrect($field, $value) {

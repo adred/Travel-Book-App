@@ -17,6 +17,7 @@ abstract class TB_Calculator {
 	private $nightTimeSurcharge = '';
 
     private $options = array();
+    private $errors = array();
     private $airportsWithCharge = array();
 
     function __construct() {
@@ -121,6 +122,15 @@ abstract class TB_Calculator {
         else {
             return $this->findDivisibleByFive($val);
         }
+    }
+
+    public function isPickupDateCorrect() {
+        if (strtotime($this->pickupDate) < strtotime('+2 hours')) {
+            $this->errors[] = 'Pickup date cannot be less than 2 hours from now.';
+            return false;
+        }
+
+        return true;
     }
 }
 
