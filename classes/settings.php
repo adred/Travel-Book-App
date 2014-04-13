@@ -40,9 +40,9 @@ class TB_Settings {
 	);
 	public $errors = array();
 
-    public function __construct($data = array()) {
-    	if ($data) {
-    		$this->data = $data;
+    public function __construct($post = array()) {
+    	if ($post) {
+    		$this->data = $this->sanitize($post);
     	}
     }
 
@@ -144,6 +144,14 @@ class TB_Settings {
         $errors .= '</ul>';
 
         return $errors;
+    }
+
+    public function sanitize($post) {
+    	$data = array();
+    	foreach($post as $key => $val) {
+    		$data[$key] = preg_replace('/[^a-zA-Z0-9 \/\.\:\@]/s', '', $val);
+    	} 
+    	return $data;
     }
 
 }
