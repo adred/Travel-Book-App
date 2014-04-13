@@ -6,6 +6,10 @@ if (!class_exists('TB_Van')) {
 class TB_Van extends TB_Calculator {
 
     public function calculate() {
+        if (!$this->isPickupDateCorrect()) {
+            return false;
+        }
+        
         $firstKm = $this->options['van_first_km'];
         $next49 = $this->distance > 1 ? ($this->distance - 1 > 49 ? 49 * $this->options['van_next_49'] : ($this->distance - 1) * $this->options['van_next_49']) : 0;
         $after50 = max((($this->distance - 50) * $this->options['van_after_50']), 0);

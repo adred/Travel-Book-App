@@ -135,7 +135,14 @@ abstract class TB_Calculator {
     }
 
     public function isPickupDateCorrect() {
-        if (strtotime($this->pickupDate) < strtotime('+2 hours')) {
+        if (strrpos($this->pickupDate, 'PM') !== false) {
+            $hoursPlus = 14;
+        }
+        else {
+            $hoursPlus = 2;
+        }
+
+        if (strtotime($this->pickupDate) < strtotime('+' . $hoursPlus . ' hours')) {
             $this->errors[] = 'Pickup date cannot be less than 2 hours from now.';
             return false;
         }
