@@ -1,3 +1,5 @@
 jQuery(document).ready(function($){
-	$( ".datepicker" ).datepicker();
+	$(".datepicker").datetimepicker({
+		timeFormat: "hh:mm tt"
+	});
 });

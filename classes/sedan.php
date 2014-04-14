@@ -21,18 +21,19 @@ class TB_Sedan extends TB_Calculator {
         $finalFare = $this->roundOff($finalFare);
 
     	if ($this->isSpecialDay()) {
-    		$finalFare = ($finalFare * ($this->specialDaySurcharge / 100)) + $finalFare;
-    	}
-
-        if ($this->isPeakTime()) {
-    		$finalFare = ($finalFare * ($this->peakTimeSurcharge / 100)) + $finalFare;
-    	}
-    	elseif ($this->isOffPeakTime()) {
-    		$finalFare = $finalFare - ($finalFare * ($this->offPeakTimeDiscount / 100));
-    	}
-    	elseif ($this->isNightTime()) {
-    		$finalFare = ($finalFare * ($this->nightTimeSurcharge / 100)) + $finalFare;
-    	}
+    		$finalFare = $finalFare * (1 + $this->specialDaySurcharge / 100);
+    	} 
+        else {
+            if ($this->isPeakTime()) {
+                $finalFare = $finalFare * (1 + $this->peakTimeSurcharge / 100);
+            }
+            elseif ($this->isOffPeakTime()) {
+                $finalFare = $finalFare - ($finalFare * ($this->offPeakTimeDiscount / 100));
+            }
+            elseif ($this->isNightTime()) {
+                $finalFare = $finalFare * (1 + $this->nightTimeSurcharge / 100);
+            }
+        }
 
         $finalFare = $this->roundOff($finalFare);
 

@@ -79,14 +79,18 @@ class TB_App {
      * Load all the plugin scripts and styles for admin page
      */
     public function admin_scripts() {
+        // Load global scripts
         wp_enqueue_script('jquery_ui', '//code.jquery.com/ui/1.10.4/jquery-ui.js');
+        wp_enqueue_script('time_picker', plugins_url('js/timepicker.js', __FILE__ ));
         wp_enqueue_script('tb_app_admin', plugins_url('admin/js/admin.js', __FILE__ ));
 
         wp_localize_script('tb_app_admin', 'TB_APP_Vars_Admin', array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tb_app_admin_nonce'),
         ));
+
         wp_enqueue_style('jquery_ui', '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css');
+        wp_enqueue_style('time_picker', plugins_url('css/timepicker.css', __FILE__ ));
         wp_enqueue_style('tp_app_admin', plugins_url('admin/css/admin.css', __FILE__ ));
     }
 
