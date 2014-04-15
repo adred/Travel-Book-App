@@ -131,20 +131,20 @@ abstract class TB_Calculator {
     }
 
     public function isPickupDateCorrect() {
-        if (strrpos($this->pickupDate, 'PM') !== false) {
-            $plus = '+14 hours';
-        }
-        else if (strrpos(trim($this->pickupDate), '12:00:00AM') !== false || strrpos(trim($this->pickupDate), '12:00AM')) {
-            $plus = '+1 day 2 hours';
-        }
-        elseif (strrpos($this->pickupDate, 'AM') !== false) {
-            $plus = '+2 hours';
-        } 
+        // if (strrpos($this->pickupDate, 'PM') !== false) {
+        //     $plus = '+14 hours';
+        // }
+        // else if (strrpos(trim($this->pickupDate), '12:00:00AM') !== false || strrpos(trim($this->pickupDate), '12:00AM')) {
+        //     $plus = '+1 day 2 hours';
+        // }
+        // elseif (strrpos($this->pickupDate, 'AM') !== false) {
+        //     $plus = '+2 hours';
+        // } 
 
-        if (strtotime($this->pickupDate) < strtotime(date('h:i:s A', strtotime($plus)))) {
-            $this->errors[] = 'Pickup date cannot be less than 2 hours from now.';
-            return false;
-        }
+        // if (strtotime($this->pickupDate) < strtotime(date('h:i:s A', strtotime($plus)))) {
+        //     $this->errors[] = 'Pickup date cannot be less than 2 hours from now.';
+        //     return false;
+        // }
 
         return true;
     }

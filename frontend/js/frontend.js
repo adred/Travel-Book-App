@@ -56,6 +56,7 @@ jQuery(document).ready(function($){
 
         $(".airport-type").on("click", function(){
             addAirportTypes();
+            activateEl($(this).parent(), $(".airport-type").closest("p").find("label"));
 
             count = 0;
             $.map(requiredFields, function(obj){
@@ -114,14 +115,18 @@ jQuery(document).ready(function($){
                 res = $.parseJSON(res);
 
                 if (!res.error) {
-                    $("#quote-result-right").text("$" + res.quote);
-                    console.log(response + "\n");
-                    console.log("distance: " + response.rows[0].elements[0].distance.text + "\n");
-                    console.log("duration: " + response.rows[0].elements[0].duration.text + "\n");
+                    $("#quote-result-right").text("$" + res.quote + "*");
+                    $("#metadata #duration span").text(response.rows[0].elements[0].duration.text);
+                    $("#metadata #distance span").text(response.rows[0].elements[0].distance.text);
                 } else {
                     console.log(res.message);
                 }
             });
         }
+    }
+
+    function activateEl(target, all) {
+        all.removeClass("active");
+        target.addClass("active");
     }
 });

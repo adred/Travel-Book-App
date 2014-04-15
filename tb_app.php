@@ -105,6 +105,8 @@ class TB_App {
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tb_app_frontend_nonce'),
         ));
+
+        wp_enqueue_style('open_sans', 'http://fonts.googleapis.com/css?family=Open+Sans');
         wp_enqueue_style('tp_app_frontend', plugins_url('frontend/css/frontend.css', __FILE__ ));
     }
 

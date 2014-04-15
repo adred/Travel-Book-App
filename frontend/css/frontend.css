@@ -2,25 +2,163 @@
 	background-color: #242841 !important;
 }
 
+/* For modern browsers */
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
+    margin: 0;
+}
+
+::-webkit-input-placeholder {
+   color: #9092AC;
+   font-size: 22px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #9092AC;
+   font-size: 22px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #9092AC;
+   font-size: 22px;
+}
+
+:-ms-input-placeholder {  
+   color: #9092AC;
+   font-size: 22px;
+}
+
+#booking-form {
+	width: 500px;
+}
+
 #booking-form h2, 
 #booking-form h3,
 #booking-form p,
 #booking-form span,
 #booking-form a {
 	font-family: "Open Sans";
+	color: #525252;
+}
+
+#booking-form h2,
+#booking-form h3 {
+	font-weight: normal;
+	text-transform: uppercase;
+	margin: 0;	
+}
+
+#booking-form h3 {
+	margin: 0;
 }
 
 #booking-form {
-	background-color: #1B1E2F;
+	background-color: transparent;
 }
 
-#booking-form header,
-#booking-form footer {
+#booking-form header {
 	background-color: #fff;
+}
+
+#booking-form header {
+	padding: 20px 30px;
 }
 
 #booking-form p {
 	margin: 1px;
+	padding: 20px 30px;
+	background-color: rgba(27, 30, 47, .5);
+	position: relative;
+}
+
+#booking-form p span.icon {
+	position: absolute;
+	display: block;
+	width: 40px;
+	height: 40px;
+}
+
+#booking-form p#origin-con span.icon {
+	background: transparent url(../img/pickup_icon.png) no-repeat left center;
+}
+
+#booking-form p#destination-con span.icon {
+	background: transparent url(../img/dropoff_icon.png) no-repeat left center;
+}
+
+#booking-form p#date-con span.icon {
+	background: transparent url(../img/datetime_icon.png) no-repeat left center;
+}
+
+#booking-form p#vehicle-type-con span.icon {
+	background: transparent url(../img/car_icon.png) no-repeat left center;
+	top: 20px;
+}
+
+#booking-form p#vehicle-type-con select {
+	margin-left: 45px;
+}
+
+#booking-form p#vehicle-type-con {
+	padding: 30px;
+}
+
+#booking-form p#baby-seats-con span.icon {
+	background: transparent url(../img/babyseat_icon.png) no-repeat left center;
+	top: 20px;
+}
+
+#booking-form p#baby-seats-con select {
+	margin-left: 45px;
+}
+
+#booking-form p#baby-seats-con {
+	padding: 30px;
+}
+
+#booking-form input[type=text] {
+	background: none;
+	border: none;
+	color: #fff;
+	font-size: 22px;
+	width: 100%;
+	padding-left: 40px;
+}
+
+#booking-form #airport-type-con {
+	padding: 0;
+}
+
+#booking-form #airport-type-con label {
+	float: right;
+	width: 50%;
+	color: #fff;
+	font-size: 22px;
+	text-align: center;
+	cursor: pointer;
+	padding: 20px 0 20px;
+}
+
+#booking-form #airport-type-con label:first-child {
+	float: left;
+	border-right: 1px solid #242940;
+}
+
+#booking-form #airport-type-con label.active {
+	background-color: #83429e;
+}
+
+#booking-form #airport-type-con input[type=radio] {
+	display: none;
 }
 
 #booking-form footer #book-now {
@@ -29,4 +167,75 @@
 
 #booking-form #airport-type-con {
 	display: none;
+}
+
+#quote-result {
+	background-color: #fff;
+}
+
+#quote-result-left {
+	float: left;
+	width: 60%;
+	padding: 30px 0 30px 30px;
+}
+
+#quote-result-left p {
+	background-color: #fff;
+	margin: 10px 0 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+#quote-result-right {
+	float: right;
+	width: 40%;
+	text-align: right;
+	font-size: 36px;
+	line-height: 116px;
+	padding-right: 30px;
+} 
+
+#metadata {
+	background-color: rgba(27, 30, 47, .5);
+}
+
+#metadata div {
+	width: 50%;
+	padding: 20px 0 20px;
+	text-align: left;
+	color: #fff;
+}
+
+#metadata div#duration {
+	float: left;
+	background: transparent url(../img/duration_icon.png) no-repeat 32px center;
+	padding-left: 70px;
+}
+
+#metadata div#distance {
+	float: left;
+	background: transparent url(../img/distance_icon.png) no-repeat left center;
+	padding-left: 38px;
+}
+
+#metadata div span {
+	color: #fff;
+}
+
+p#book-now {
+	padding: 0;
+	margin: 0;
+}
+
+p#book-now a {
+	padding: 15px 20px;
+	display: block;
+	font-size: 30px;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+p#book-now a:hover {
+	text-decoration: none;
 }
