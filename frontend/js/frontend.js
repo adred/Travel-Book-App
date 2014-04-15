@@ -11,30 +11,75 @@ jQuery(document).ready(function($){
         $("#baby-seats")
     ];
 
-    $("#vehicle-type, #baby-seats").on("change", function(){
-        count = 0;
-        $.map(requiredFields, function(obj){
-            if (obj.val()) {
-                ++count
+    var airportsWithCharge = [
+        "Melbourne Airport",
+        "Tullamarine Airport"
+    ];
+
+    bindCalc();
+
+    function bindCalc() {
+        $("#vehicle-type, #baby-seats").on("change", function(){
+            if ($("#airport-type-con").is(":visible")) {
+                addAirportTypes();
             }
-            if (count == requiredFields.length) {
-                calculateDistance();
+
+            count = 0;
+            $.map(requiredFields, function(obj){
+                if (obj.val()) {
+                    ++count
+                }
+                if (count == requiredFields.length) {
+                    calculateDistance();
+                }
+            });
+        });
+
+        $("#origin, #destination, #pickup-date").on("focusout", function(){
+            if ($(this).attr("id") == "origin") {
+                showAirportTypes();
+            }
+            if ($("#airport-type-con").is(":visible")) {
+                addAirportTypes();
+            }
+
+            count = 0;
+            $.map(requiredFields, function(obj){
+                if (obj.val()) {
+                    ++count;
+                }
+                if (count == requiredFields.length) {
+                    calculateDistance();
+                }
+            });
+        });
+
+        $(".airport-type").on("click", function(){
+            addAirportTypes();
+
+            count = 0;
+            $.map(requiredFields, function(obj){
+                if (obj.val()) {
+                    ++count;
+                }
+                if (count == requiredFields.length) {
+                    calculateDistance();
+                }
+            });
+        });
+    }
+
+    function showAirportTypes() {
+        $.map(airportsWithCharge, function(val){
+            if ($("#origin").val().indexOf(val) !== -1) {
+                $("#airport-type-con").fadeIn();
             }
         });
-    });
+    }
 
-    $("#origin, #destination, #pickup-date").on("focusout", function(){
-        count = 0;
-        $.map(requiredFields, function(obj){
-            if (obj.val()) {
-                ++count;
-            }
-            if (count == requiredFields.length) {
-                calculateDistance();
-            }
-        });
-    })
-
+    function addAirportTypes() {
+        requiredFields.push($("#airport-type-con").find("input"));
+    }
 
     function calculateDistance() {
         var service = new google.maps.DistanceMatrixService
@@ -58,7 +103,7 @@ jQuery(document).ready(function($){
                     "distance": distance,
                     "origin": $("#origin").val(),
                     "pickupDate": $("#pickup-date").val(),
-                    "airportType": "International",
+                    "airportType": $(".airport-type:checked").val(),
                     "vehicleType": $("#vehicle-type").val(),
                     "babySeats": $("#baby-seats").val(),
                     "action": "tb_calculate",

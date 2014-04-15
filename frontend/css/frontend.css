@@ -26,3 +26,7 @@
 #booking-form footer #book-now {
 	background-color: #7C4096;
 }
+
+#booking-form #airport-type-con {
+	display: none;
+}

@@ -5,6 +5,10 @@
     <section>
         <form method="post" action="">
             <p><input type="text" id="origin" name="origin" value="" placeholder="Pickup address" /></p>
+            <p id="airport-type-con">
+                <label><input type="radio" class="airport-type" name="airport_type" value="Domestic" checked />Domestic</label>
+                <label><input type="radio" class="airport-type" name="airport_type" value="International" />International</label>
+            </p>
             <p><input type="text" id="destination" name="destination" value="" placeholder="Drop off address" /></p>
             <p><input type="text" id="pickup-date" name="pickup_date" value="" placeholder="Date and Time" /></p>
             <p><select id="vehicle-type" name="vehicle_type">
