@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+    // Google Maps - Distance Matrix API
     var map;
     var geocoder;
     var bounds = new google.maps.LatLngBounds();
@@ -129,4 +130,11 @@ jQuery(document).ready(function($){
         all.removeClass("active");
         target.addClass("active");
     }
+
+    // Custom Select
+    jQuery("#date-con").fancyfields({ customScrollBar: true });
+    jQuery("#hour-con").fancyfields({ customScrollBar: true });
+    jQuery("#minute-con").fancyfields({ customScrollBar: true });
+    jQuery("#am-pm-con").fancyfields({ customScrollBar: true });
+    jQuery("#vehicle-type-con").fancyfields({ customScrollBar: true });
 });

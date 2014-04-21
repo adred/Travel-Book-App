@@ -18,22 +18,22 @@
 }
 
 ::-webkit-input-placeholder {
-   color: #9092AC;
+   color: #fff;
    font-size: 22px;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: #9092AC;
+   color: #fff;
    font-size: 22px;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #9092AC;
+   color: #fff;
    font-size: 22px;
 }
 
 :-ms-input-placeholder {  
-   color: #9092AC;
+   color: #fff;
    font-size: 22px;
 }
 
@@ -73,56 +73,39 @@
 	padding: 20px 30px;
 }
 
-#booking-form p {
+#booking-form .item-con {
 	margin: 1px;
 	padding: 20px 30px;
 	background-color: rgba(27, 30, 47, .5);
 	position: relative;
+	min-height: 80px;
 }
 
-#booking-form p span.icon {
+#booking-form div span.icon {
 	position: absolute;
 	display: block;
 	width: 40px;
 	height: 40px;
 }
 
-#booking-form p#origin-con span.icon {
+#booking-form #origin-con span.icon {
 	background: transparent url(../img/pickup_icon.png) no-repeat left center;
 }
 
-#booking-form p#destination-con span.icon {
+#booking-form #destination-con span.icon {
 	background: transparent url(../img/dropoff_icon.png) no-repeat left center;
 }
 
-#booking-form p#date-con span.icon {
+#booking-form #date-con span.icon {
 	background: transparent url(../img/datetime_icon.png) no-repeat left center;
 }
 
-#booking-form p#vehicle-type-con span.icon {
+#booking-form #vehicle-type-con span.icon {
 	background: transparent url(../img/car_icon.png) no-repeat left center;
-	top: 20px;
 }
 
-#booking-form p#vehicle-type-con select {
-	margin-left: 45px;
-}
-
-#booking-form p#vehicle-type-con {
-	padding: 30px;
-}
-
-#booking-form p#baby-seats-con span.icon {
+#booking-form #baby-seats-con span.icon {
 	background: transparent url(../img/babyseat_icon.png) no-repeat left center;
-	top: 20px;
-}
-
-#booking-form p#baby-seats-con select {
-	margin-left: 45px;
-}
-
-#booking-form p#baby-seats-con {
-	padding: 30px;
 }
 
 #booking-form input[type=text] {
@@ -238,4 +221,97 @@ p#book-now a {
 
 p#book-now a:hover {
 	text-decoration: none;
+}
+
+#date-con,
+#hour-con,
+#minute-con,
+#am-pm-con {
+	float: left;
+}
+
+#date-con #date-dropdown,
+#hour-con #hour-dropdown,
+#minute-con #minute-dropdown,
+#am-pm-con #am-pm-dropdown,
+#vehicle-type-con #vehicle-type-dropdown {
+	display: none;
+}
+
+#date-con .ffSelectWrapper {
+	width: 150px;
+	margin-left: 40px;
+	margin-right: 15px;
+}
+
+#date-con .ffSelectMenuMid,
+#hour-con .ffSelectMenuMid,
+#minute-con .ffSelectMenuMid,
+#vehicle-type-con .ffSelectMenuMid {
+	padding-left: 0;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 2px #000;
+	-moz-box-shadow: 0 1px 2px #000;
+	box-shadow: 0 1px 2px #000;
+}
+
+#date-con li,
+#hour-con li,
+#minute-con li,
+#am-pm-con li,
+#vehicle-type-con li {
+	padding: 5px 0px 5px 10px;
+}
+
+#date-con .ffSelect > a > span {
+	margin-right: 0 !important;
+	font-size: 22px;
+	color: #fff;
+	width: 150px;
+	padding-left: 0;
+	padding-right: 30px;
+}
+
+#hour-con .ffSelectWrapper,
+#minute-con .ffSelectWrapper {
+	width: 60px;
+	margin-right: 15px;
+}
+
+#hour-con .ffSelect > a > span,
+#minute-con .ffSelect > a > span {
+	margin-right: 0 !important;
+	font-size: 22px;
+	color: #fff;
+	width: 60px;
+	padding-left: 0;
+	padding-right: 30px;
+}
+
+#am-pm-con .ffSelectWrapper {
+	width: 65px;
+	margin-right: 15px;
+}
+
+#am-pm-con .ffSelect > a > span {
+	margin-right: 0 !important;
+	font-size: 22px;
+	color: #fff;
+	width: 65px;
+	padding-left: 0;
+	padding-right: 30px;
+}
+
+#vehicle-type-con .ffSelectWrapper {
+	margin-left: 40px;
+	margin-right: 15px;
+}
+
+
+#vehicle-type-con .ffSelect > a > span {
+	margin-right: 0 !important;
+	font-size: 22px;
+	color: #fff;
+	padding-left: 0;
+	padding-right: 30px;
 }

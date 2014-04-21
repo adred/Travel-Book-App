@@ -60,6 +60,7 @@ class TB_App {
      */
     public function init() {
         new TB_Ajax();
+        include_once plugin_dir_path(__FILE__) . 'frontend/includes/functions.php';
     }
     
     /**
@@ -99,6 +100,9 @@ class TB_App {
      */
     public function frontend_scripts() {
         wp_enqueue_script('gm_api', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
+        wp_enqueue_script('jquery_ui_custom', plugins_url('frontend/js/fancyfields/jquery-ui-1.10.2.custom.min.js', __FILE__ ));
+        wp_enqueue_script('fancyfields', plugins_url('frontend/js/fancyfields/fancyfields-1.2.min.js', __FILE__ ));
+        wp_enqueue_script('fancyfields_csb', plugins_url('frontend/js/fancyfields/fancyfields.csb.min.js', __FILE__ ));
         wp_enqueue_script('tb_app_frontend', plugins_url('frontend/js/frontend.js', __FILE__ ));
 
         wp_localize_script('tb_app_frontend', 'TB_APP_Vars_Frontend', array(
@@ -107,6 +111,7 @@ class TB_App {
         ));
 
         wp_enqueue_style('open_sans', 'http://fonts.googleapis.com/css?family=Open+Sans');
+         wp_enqueue_style('fancyfields', plugins_url('frontend/css/fancyfields/fancyfields.css', __FILE__ ));
         wp_enqueue_style('tp_app_frontend', plugins_url('frontend/css/frontend.css', __FILE__ ));
     }
 
@@ -124,7 +129,7 @@ class TB_App {
      * related markup.
      */
     public function admin_page_handler() {
-        include_once plugin_dir_path(__FILE__) . 'includes/functions.php';
+        include_once plugin_dir_path(__FILE__) . 'admin/includes/functions.php';
         include_once plugin_dir_path(__FILE__) . 'admin/settings.php';
     }
 

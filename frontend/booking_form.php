@@ -4,31 +4,43 @@
     </header>
     <section>
         <form method="post" action="">
-            <p id="origin-con"><span class="icon"></span><input type="text" id="origin" name="origin" value="" placeholder="Pickup address" /></p>
-            <p id="airport-type-con" class="clearfix">
+            <input type="hidden" name="pickup_date" value="" />
+            <input type="hidden" name="vehicle_type" value="" />
+            <input type="hidden" name="baby_seats" value="" />
+            <div id="origin-con" class="item-con"><span class="icon"></span><input type="text" id="origin" name="origin" value="" placeholder="Pickup address" /></div>
+            <div id="airport-type-con" class="clearfix item-con">
                 <label class="active"><input type="radio" class="airport-type" name="airport_type" value="Domestic" checked />Domestic</label>
                 <label><input type="radio" class="airport-type" name="airport_type" value="International" />International</label>
-            </p>
-            <p id="destination-con"><span class="icon"></span><input type="text" id="destination" name="destination" value="" placeholder="Drop off address" /></p>
-            <p id="date-con"><span class="icon"></span><input type="text" id="pickup-date" name="pickup_date" value="" placeholder="Date and Time" /></p>
-            <p id="vehicle-type-con">
+            </div>
+            <div id="destination-con" class="item-con"><span class="icon"></span><input type="text" id="destination" name="destination" value="" placeholder="Drop off address" /></div>
+            <div class="clearfix item-con">
+                <div id="date-con">
+                    <span class="icon"></span>
+                    <?php echo tb_get_dates(); ?>
+                </div>
+                <div id="hour-con">
+                    <?php echo tb_get_hours(); ?>
+                </div>
+                <div id="minute-con">
+                    <?php echo tb_get_minutes(); ?>
+                </div>
+                <div id="am-pm-con">
+                    <select id="am-pm-dropdown">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+            </div>
+            <div id="vehicle-type-con" class="item-con">
                 <span class="icon"></span>
-                <select id="vehicle-type" name="vehicle_type">
+                <select id="vehicle-type-dropdown">
                     <option value="sedan">Holden Caprice</option>
                     <option value="van">Mercedes Benz</option>
                 </select>
-            </p>
-            <p id="baby-seats-con">
+            </div>
+            <div id="baby-seats-con" class="item-con">
                 <span class="icon"></span>
-                <select id="baby-seats" name="baby_seats">
-                    <option value="0">None</option>
-                    <option value="1">1 seat</option>
-                    <option value="2">2 seats</option>
-                    <option value="3">3 seats</option>
-                    <option value="4">4 seats</option>
-                    <option value="5">5 seats</option>
-                </select>
-            </p>
+            </div>
         </form>
     </section>
     <footer>
