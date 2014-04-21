@@ -131,10 +131,18 @@ jQuery(document).ready(function($){
         target.addClass("active");
     }
 
+    var selects = $('#booking-form .dropdown');
+    selects.easyDropDown({
+        cutOff: 10,
+        onChange: function(selected){
+            // do something
+        }
+    });
+
     // Custom Select
-    jQuery("#date-con").fancyfields({ customScrollBar: true });
-    jQuery("#hour-con").fancyfields({ customScrollBar: true });
-    jQuery("#minute-con").fancyfields({ customScrollBar: true });
-    jQuery("#am-pm-con").fancyfields({ customScrollBar: true });
-    jQuery("#vehicle-type-con").fancyfields({ customScrollBar: true });
+    // jQuery("#date-con").fancyfields({ customScrollBar: true });
+    // jQuery("#hour-con").fancyfields({ customScrollBar: true });
+    // jQuery("#minute-con").fancyfields({ customScrollBar: true });
+    // jQuery("#am-pm-con").fancyfields({ customScrollBar: true });
+    // jQuery("#vehicle-type-con").fancyfields({ customScrollBar: true });
 });

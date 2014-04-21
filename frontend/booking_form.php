@@ -4,9 +4,7 @@
     </header>
     <section>
         <form method="post" action="">
-            <input type="hidden" name="pickup_date" value="" />
-            <input type="hidden" name="vehicle_type" value="" />
-            <input type="hidden" name="baby_seats" value="" />
+            <!-- <input type="hidden" name="baby_seats" value="" /> -->
             <div id="origin-con" class="item-con"><span class="icon"></span><input type="text" id="origin" name="origin" value="" placeholder="Pickup address" /></div>
             <div id="airport-type-con" class="clearfix item-con">
                 <label class="active"><input type="radio" class="airport-type" name="airport_type" value="Domestic" checked />Domestic</label>
@@ -25,7 +23,7 @@
                     <?php echo tb_get_minutes(); ?>
                 </div>
                 <div id="am-pm-con">
-                    <select id="am-pm-dropdown">
+                    <select id="am-pm-dropdown" class="dropdown" name="pickup_date_amorpm">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
                     </select>
@@ -33,7 +31,7 @@
             </div>
             <div id="vehicle-type-con" class="item-con">
                 <span class="icon"></span>
-                <select id="vehicle-type-dropdown">
+                <select id="vehicle-type-dropdown" class="dropdown" name="vehicle_type">
                     <option value="sedan">Holden Caprice</option>
                     <option value="van">Mercedes Benz</option>
                 </select>

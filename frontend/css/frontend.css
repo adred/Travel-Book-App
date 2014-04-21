@@ -38,7 +38,7 @@
 }
 
 #booking-form {
-	width: 500px;
+	width: 515px;
 }
 
 #booking-form h2, 
@@ -48,6 +48,7 @@
 #booking-form a {
 	font-family: "Open Sans";
 	color: #525252;
+	font-weight: normal;
 }
 
 #booking-form h2,
@@ -78,7 +79,7 @@
 	padding: 20px 30px;
 	background-color: rgba(27, 30, 47, .5);
 	position: relative;
-	min-height: 80px;
+	min-height: 76px;
 }
 
 #booking-form div span.icon {
@@ -86,6 +87,7 @@
 	display: block;
 	width: 40px;
 	height: 40px;
+	top: 19px;
 }
 
 #booking-form #origin-con span.icon {
@@ -223,7 +225,7 @@ p#book-now a:hover {
 	text-decoration: none;
 }
 
-#date-con,
+/*#date-con,
 #hour-con,
 #minute-con,
 #am-pm-con {
@@ -314,4 +316,49 @@ p#book-now a:hover {
 	color: #fff;
 	padding-left: 0;
 	padding-right: 30px;
+}*/
+
+.dropdown ul {
+	padding: 0;
+	margin: 0;
+}
+
+.dropdown ul li {
+	border-top: 1px dotted #ccc;
+}
+
+.dropdown li.active,
+.dropdown li:hover,
+.dropdown li:focus {
+	background: #7C4096;
+}
+
+#date-con,
+#hour-con,
+#minute-con,
+#am-pm-con {
+	float: left;
+	margin-left: 10px;
+}
+
+#date-con {
+	margin-left: 0;
+}
+
+#date-con .dropdown {
+	width: 150px;
+	margin-left: 40px;
+}
+
+#hour-con .dropdown,
+#minute-con .dropdown {
+	width: 75px;
+}
+
+#am-pm-con .dropdown {
+	width: 80px;
+}
+
+#vehicle-type-con .dropdown {
+	margin-left: 40px;
 }

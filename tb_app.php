@@ -44,7 +44,7 @@ class TB_App {
 
         if (isset($name[1])) {
             $class_name = strtolower($name[1]);
-            $filename = dirname(__FILE__) . '/classes/' . $class_name . '.php';
+            $filename = dirname(__FILE__) . '/admin/classes/' . $class_name . '.php';
 
             if (file_exists($filename)) {
                 require_once $filename;
@@ -82,7 +82,7 @@ class TB_App {
     public function admin_scripts() {
         // Load global scripts
         wp_enqueue_script('jquery_ui', '//code.jquery.com/ui/1.10.4/jquery-ui.js');
-        wp_enqueue_script('time_picker', plugins_url('js/timepicker.js', __FILE__ ));
+        wp_enqueue_script('time_picker', plugins_url('admin/js/vendor/timepicker.js', __FILE__ ));
         wp_enqueue_script('tb_app_admin', plugins_url('admin/js/admin.js', __FILE__ ));
 
         wp_localize_script('tb_app_admin', 'TB_APP_Vars_Admin', array(
@@ -91,7 +91,7 @@ class TB_App {
         ));
 
         wp_enqueue_style('jquery_ui', '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css');
-        wp_enqueue_style('time_picker', plugins_url('css/timepicker.css', __FILE__ ));
+        wp_enqueue_style('time_picker', plugins_url('admin/css/vendor/timepicker.css', __FILE__ ));
         wp_enqueue_style('tp_app_admin', plugins_url('admin/css/admin.css', __FILE__ ));
     }
 
@@ -100,9 +100,8 @@ class TB_App {
      */
     public function frontend_scripts() {
         wp_enqueue_script('gm_api', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
-        wp_enqueue_script('jquery_ui_custom', plugins_url('frontend/js/fancyfields/jquery-ui-1.10.2.custom.min.js', __FILE__ ));
-        wp_enqueue_script('fancyfields', plugins_url('frontend/js/fancyfields/fancyfields-1.2.min.js', __FILE__ ));
-        wp_enqueue_script('fancyfields_csb', plugins_url('frontend/js/fancyfields/fancyfields.csb.min.js', __FILE__ ));
+        wp_enqueue_script('prettify', 'https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
+        wp_enqueue_script('easydropdown', plugins_url('frontend/js/vendor/jquery.easydropdown.min.js', __FILE__ ));
         wp_enqueue_script('tb_app_frontend', plugins_url('frontend/js/frontend.js', __FILE__ ));
 
         wp_localize_script('tb_app_frontend', 'TB_APP_Vars_Frontend', array(
@@ -111,8 +110,15 @@ class TB_App {
         ));
 
         wp_enqueue_style('open_sans', 'http://fonts.googleapis.com/css?family=Open+Sans');
-         wp_enqueue_style('fancyfields', plugins_url('frontend/css/fancyfields/fancyfields.css', __FILE__ ));
+        wp_enqueue_style('easydropdown_metro', plugins_url('frontend/css/vendor/easydropdown.metro.css', __FILE__ ));
         wp_enqueue_style('tp_app_frontend', plugins_url('frontend/css/frontend.css', __FILE__ ));
+
+        ?>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+        <?php
     }
 
     /**
