@@ -225,111 +225,26 @@ p#book-now a:hover {
 	text-decoration: none;
 }
 
-/*#date-con,
-#hour-con,
-#minute-con,
-#am-pm-con {
-	float: left;
-}
 
-#date-con #date-dropdown,
-#hour-con #hour-dropdown,
-#minute-con #minute-dropdown,
-#am-pm-con #am-pm-dropdown,
-#vehicle-type-con #vehicle-type-dropdown {
+/* Custom Dropdowns
+************************************************************/
+
+#booking-form select.dropdown {
 	display: none;
 }
 
-#date-con .ffSelectWrapper {
-	width: 150px;
-	margin-left: 40px;
-	margin-right: 15px;
-}
-
-#date-con .ffSelectMenuMid,
-#hour-con .ffSelectMenuMid,
-#minute-con .ffSelectMenuMid,
-#vehicle-type-con .ffSelectMenuMid {
-	padding-left: 0;
-	background-color: #fff;
-	-webkit-box-shadow: 0 1px 2px #000;
-	-moz-box-shadow: 0 1px 2px #000;
-	box-shadow: 0 1px 2px #000;
-}
-
-#date-con li,
-#hour-con li,
-#minute-con li,
-#am-pm-con li,
-#vehicle-type-con li {
-	padding: 5px 0px 5px 10px;
-}
-
-#date-con .ffSelect > a > span {
-	margin-right: 0 !important;
-	font-size: 22px;
-	color: #fff;
-	width: 150px;
-	padding-left: 0;
-	padding-right: 30px;
-}
-
-#hour-con .ffSelectWrapper,
-#minute-con .ffSelectWrapper {
-	width: 60px;
-	margin-right: 15px;
-}
-
-#hour-con .ffSelect > a > span,
-#minute-con .ffSelect > a > span {
-	margin-right: 0 !important;
-	font-size: 22px;
-	color: #fff;
-	width: 60px;
-	padding-left: 0;
-	padding-right: 30px;
-}
-
-#am-pm-con .ffSelectWrapper {
-	width: 65px;
-	margin-right: 15px;
-}
-
-#am-pm-con .ffSelect > a > span {
-	margin-right: 0 !important;
-	font-size: 22px;
-	color: #fff;
-	width: 65px;
-	padding-left: 0;
-	padding-right: 30px;
-}
-
-#vehicle-type-con .ffSelectWrapper {
-	margin-left: 40px;
-	margin-right: 15px;
-}
-
-
-#vehicle-type-con .ffSelect > a > span {
-	margin-right: 0 !important;
-	font-size: 22px;
-	color: #fff;
-	padding-left: 0;
-	padding-right: 30px;
-}*/
-
-.dropdown ul {
+#booking-form .dropdown ul {
 	padding: 0;
 	margin: 0;
 }
 
-.dropdown ul li {
+#booking-form .dropdown ul li {
 	border-top: 1px dotted #ccc;
 }
 
-.dropdown li.active,
-.dropdown li:hover,
-.dropdown li:focus {
+#booking-form .dropdown li.active,
+#booking-form .dropdown li:hover,
+#booking-form .dropdown li:focus {
 	background: #7C4096;
 }
 
