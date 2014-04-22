@@ -36,8 +36,12 @@
                     <option value="van">Mercedes Benz</option>
                 </select>
             </div>
-            <div id="baby-seats-con" class="item-con">
+            <div id="baby-seats-con" class="item-con clearfix">
                 <span class="icon"></span>
+                <div id="babyseats-label">Baby Seats</div>
+                <div id="babyseats-controls" class="clearfix">
+                    <span class="carat-up"></span><input id="baby-seats" type="text" name="baby_seats" value="" placeholder="0"/><span class="carat-down"></span>
+                </div>
             </div>
         </form>
     </section>
@@ -45,7 +49,7 @@
         <div id="quote-result" class="clearfix">
             <div id="quote-result-left">
                 <h3>Fare</h3>
-                <p>* Additional will stops incur a additional charge</p>
+                <p>* Additional stops will incur an additional charge</p>
             </div>
             <div id="quote-result-right">$0.00*</div>
         </div>

@@ -18,22 +18,22 @@
 }
 
 ::-webkit-input-placeholder {
-   color: #fff;
+   color: #A5AABF;
    font-size: 22px;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: #fff;
+   color: #A5AABF;
    font-size: 22px;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #fff;
+   color: #A5AABF;
    font-size: 22px;
 }
 
 :-ms-input-placeholder {  
-   color: #fff;
+   color: #A5AABF;
    font-size: 22px;
 }
 
@@ -76,10 +76,10 @@
 
 #booking-form .item-con {
 	margin: 1px;
-	padding: 20px 30px;
+	padding: 15px 30px;
 	background-color: rgba(27, 30, 47, .5);
 	position: relative;
-	min-height: 76px;
+	min-height: 65px;
 }
 
 #booking-form div span.icon {
@@ -87,7 +87,7 @@
 	display: block;
 	width: 40px;
 	height: 40px;
-	top: 19px;
+	top: 14px;
 }
 
 #booking-form #origin-con span.icon {
@@ -121,6 +121,7 @@
 
 #booking-form #airport-type-con {
 	padding: 0;
+	min-height: 0;
 }
 
 #booking-form #airport-type-con label {
@@ -130,7 +131,7 @@
 	font-size: 22px;
 	text-align: center;
 	cursor: pointer;
-	padding: 20px 0 20px;
+	padding: 10px 0 10px;
 }
 
 #booking-form #airport-type-con label:first-child {
@@ -262,7 +263,7 @@ p#book-now a:hover {
 
 #date-con .dropdown {
 	width: 150px;
-	margin-left: 40px;
+	margin-left: 43px;
 }
 
 #hour-con .dropdown,
@@ -275,5 +276,52 @@ p#book-now a:hover {
 }
 
 #vehicle-type-con .dropdown {
+	margin-left: 43px;
+}
+
+#baby-seats-con .icon {
+	top: 15px;
+}
+
+#babyseats-label {
+	float: left;
+	color: #fff;
+	font-size: 22px;
 	margin-left: 40px;
+	margin-top: 4px;
+}
+
+#babyseats-controls {
+	float: right;
+	margin-top: 5px;
+}
+
+.carat-up,
+.carat-down {
+	display: block;
+	width: 25px;
+	height: 28px;
+	float: left;
+	cursor: pointer;
+}
+
+.carat-up:active,
+.carat-down:active {
+	background-position: 0 8px;
+}
+
+.carat-up {
+	background: url(../img/up_icon.png) no-repeat 0 7px;
+}
+
+.carat-down {
+	background: url(../img/down_icon.png) no-repeat 0 7px;
+}
+
+#booking-form #baby-seats {
+	width: 35px;
+	padding: 0;
+	float: left;
+	margin: 0 25px;
+	text-align: center;
 }

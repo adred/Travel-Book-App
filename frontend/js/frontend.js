@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 
         $(".airport-type").on("click", function(){
             addAirportTypes();
-            activateEl($(this).parent(), $(".airport-type").closest("p").find("label"));
+            activateEl($(this).parent(), $(".airport-type").closest("div").find("label"));
 
             count = 0;
             $.map(requiredFields, function(obj){
@@ -74,7 +74,7 @@ jQuery(document).ready(function($){
     function showAirportTypes() {
         $.map(airportsWithCharge, function(val){
             if ($("#origin").val().indexOf(val) !== -1) {
-                $("#airport-type-con").fadeIn();
+                $("#airport-type-con").slideDown(150);
             }
         });
     }
@@ -131,7 +131,7 @@ jQuery(document).ready(function($){
         target.addClass("active");
     }
 
-    var selects = $('#booking-form .dropdown');
+    var selects = $("#booking-form .dropdown");
     selects.easyDropDown({
         cutOff: 10,
         onChange: function(selected){
@@ -139,10 +139,13 @@ jQuery(document).ready(function($){
         }
     });
 
-    // Custom Select
-    // jQuery("#date-con").fancyfields({ customScrollBar: true });
-    // jQuery("#hour-con").fancyfields({ customScrollBar: true });
-    // jQuery("#minute-con").fancyfields({ customScrollBar: true });
-    // jQuery("#am-pm-con").fancyfields({ customScrollBar: true });
-    // jQuery("#vehicle-type-con").fancyfields({ customScrollBar: true });
+    // baby seats
+    $("#babyseats-controls .carat-up").on("click", function(){
+        var val = parseInt($("#baby-seats").val() ? $("#baby-seats").val() : 0) + 1;
+        $("#baby-seats").val(val);
+    });
+    $("#babyseats-controls .carat-down").on("click", function(){
+        var val = $("#baby-seats").val() != false && $("#baby-seats").val() != "NAN"  ? parseInt($("#baby-seats").val()) - 1 : 0;
+        $("#baby-seats").val(val);
+    });
 });
