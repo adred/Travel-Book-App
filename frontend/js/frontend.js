@@ -133,7 +133,7 @@ jQuery(document).ready(function($){
 
     var selects = $("#booking-form .dropdown");
     selects.easyDropDown({
-        cutOff: 10,
+        cutOff: 5,
         onChange: function(selected){
             // do something
         }

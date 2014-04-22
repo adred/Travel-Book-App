@@ -230,6 +230,12 @@ p#book-now a:hover {
 /* Custom Dropdowns
 ************************************************************/
 
+#booking-form .dropdown.scrollable div {
+	-webkit-box-shadow: 0 1px 1px #696969;
+	-moz-box-shadow: 0 1px 1px #696969;
+	box-shadow: 0 1px 1px #696969;
+}
+
 #booking-form select.dropdown {
 	display: none;
 }
