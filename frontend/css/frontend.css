@@ -200,8 +200,8 @@
 
 #metadata div#distance {
 	float: left;
-	background: transparent url(../img/distance_icon.png) no-repeat left center;
-	padding-left: 38px;
+	background: transparent url(../img/distance_icon.png) no-repeat 40px center;
+	padding-left: 78px;
 }
 
 #metadata div span {

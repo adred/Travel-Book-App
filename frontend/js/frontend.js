@@ -98,7 +98,6 @@ jQuery(document).ready(function($){
             alert("Error was: " + status);
         } else {
             var distance = response.rows[0].elements[0].distance.text.split(" ")[0];
-            console.log($("#date-dropdown").val() + " " + $("#hour-dropdown").val() + ":" + $("#minute-dropdown").val() + " " + $("#am-pm-dropdown").val());
             var data = {
                     "distance": distance,
                     "origin": $("#origin").val(),
