@@ -7,9 +7,11 @@ jQuery(document).ready(function($){
     var requiredFields = [
         $("#origin"), 
         $("#destination"), 
-        $("#pickup-date"),
-        $("#vehicle-type"),
-        $("#baby-seats")
+        $("#date-dropdown"),
+        $("#hour-dropdown"),
+        $("#minute-dropdown"),
+        $("#am-pm-dropdown"),
+        $("#vehicle-type-dropdown")
     ];
 
     var airportsWithCharge = [
@@ -20,23 +22,7 @@ jQuery(document).ready(function($){
     bindCalc();
 
     function bindCalc() {
-        $("#vehicle-type, #baby-seats").on("change", function(){
-            if ($("#airport-type-con").is(":visible")) {
-                addAirportTypes();
-            }
-
-            count = 0;
-            $.map(requiredFields, function(obj){
-                if (obj.val()) {
-                    ++count
-                }
-                if (count == requiredFields.length) {
-                    calculateDistance();
-                }
-            });
-        });
-
-        $("#origin, #destination, #pickup-date").on("focusout", function(){
+        $("#origin, #destination").on("focusout", function(){
             if ($(this).attr("id") == "origin") {
                 showAirportTypes();
             }
@@ -44,30 +30,41 @@ jQuery(document).ready(function($){
                 addAirportTypes();
             }
 
-            count = 0;
-            $.map(requiredFields, function(obj){
-                if (obj.val()) {
-                    ++count;
-                }
-                if (count == requiredFields.length) {
-                    calculateDistance();
-                }
-            });
+            triggerCalc();
         });
 
         $(".airport-type").on("click", function(){
             addAirportTypes();
             activateEl($(this).parent(), $(".airport-type").closest("div").find("label"));
 
-            count = 0;
-            $.map(requiredFields, function(obj){
-                if (obj.val()) {
-                    ++count;
+            triggerCalc();
+        });
+
+        $("#booking-form .dropdown").easyDropDown({
+            cutOff: 5,
+            onChange: function(selected){
+                $($(this)["context"]).find("select").val(selected.value);
+
+                if ($("#airport-type-con").is(":visible")) {
+                    addAirportTypes();
                 }
-                if (count == requiredFields.length) {
-                    calculateDistance();
-                }
-            });
+
+                triggerCalc();
+            }
+        });
+
+        // baby seats
+        $("#babyseats-controls .carat-up").on("click", function(){
+            var val = parseInt($("#baby-seats").val() ? $("#baby-seats").val() : 0) + 1;
+            $("#baby-seats").val(val);
+
+            triggerCalc();
+        });
+        $("#babyseats-controls .carat-down").on("click", function(){
+            var val = $("#baby-seats").val() != false && $("#baby-seats").val() != "NAN"  ? parseInt($("#baby-seats").val()) - 1 : 0;
+            $("#baby-seats").val(val);
+
+            triggerCalc();
         });
     }
 
@@ -101,12 +98,13 @@ jQuery(document).ready(function($){
             alert("Error was: " + status);
         } else {
             var distance = response.rows[0].elements[0].distance.text.split(" ")[0];
+            console.log($("#date-dropdown").val() + " " + $("#hour-dropdown").val() + ":" + $("#minute-dropdown").val() + " " + $("#am-pm-dropdown").val());
             var data = {
                     "distance": distance,
                     "origin": $("#origin").val(),
-                    "pickupDate": $("#pickup-date").val(),
+                    "pickupDate": $("#date-dropdown").val() + " " + $("#hour-dropdown").val() + ":" + $("#minute-dropdown").val() + " " + $("#am-pm-dropdown").val(),
                     "airportType": $(".airport-type:checked").val(),
-                    "vehicleType": $("#vehicle-type").val(),
+                    "vehicleType": $("#vehicle-type-dropdown").val(),
                     "babySeats": $("#baby-seats").val(),
                     "action": "tb_calculate",
                     "_wpnonce": TB_APP_Vars_Frontend.nonce
@@ -131,21 +129,15 @@ jQuery(document).ready(function($){
         target.addClass("active");
     }
 
-    var selects = $("#booking-form .dropdown");
-    selects.easyDropDown({
-        cutOff: 5,
-        onChange: function(selected){
-            // do something
-        }
-    });
-
-    // baby seats
-    $("#babyseats-controls .carat-up").on("click", function(){
-        var val = parseInt($("#baby-seats").val() ? $("#baby-seats").val() : 0) + 1;
-        $("#baby-seats").val(val);
-    });
-    $("#babyseats-controls .carat-down").on("click", function(){
-        var val = $("#baby-seats").val() != false && $("#baby-seats").val() != "NAN"  ? parseInt($("#baby-seats").val()) - 1 : 0;
-        $("#baby-seats").val(val);
-    });
+    function triggerCalc() {
+        count = 0;
+        $.map(requiredFields, function(obj){
+            if (obj.val()) {
+                ++count
+            }
+            if (count == requiredFields.length) {
+                calculateDistance();
+            }
+        });
+    }
 });
