@@ -53,7 +53,7 @@
             </div>
             <div id="quote-result-right">$0.00*</div>
         </div>
-        <div id="metadata" class="clearfix">
+        <div id="metadata" class="clearfix item-con">
             <div id="duration">Duration:&nbsp;&nbsp;&nbsp;<span></span></div>
             <div id="distance">Distance:&nbsp;&nbsp;&nbsp;<span></span></div>
         </div>
