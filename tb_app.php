@@ -99,12 +99,13 @@ class TB_App {
      * Load all the plugin scripts and styles only for the frontend
      */
     public function frontend_scripts() {
-        wp_enqueue_script('gm_api', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
+        wp_enqueue_script('gm_api', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places');
         wp_enqueue_script('prettify', 'https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
         wp_enqueue_script('easydropdown', plugins_url('frontend/js/vendor/jquery.easydropdown.min.js', __FILE__ ));
-        wp_enqueue_script('tb_app_frontend', plugins_url('frontend/js/frontend.js', __FILE__ ));
+        wp_enqueue_script('tb_app_calc', plugins_url('frontend/js/calc.js', __FILE__ ));
+        wp_enqueue_script('tb_app_autocomplate', plugins_url('frontend/js/autocomplete.js', __FILE__ ));
 
-        wp_localize_script('tb_app_frontend', 'TB_APP_Vars_Frontend', array(
+        wp_localize_script('tb_app_autocomplate', 'TB_APP_Vars_Frontend', array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tb_app_frontend_nonce'),
         ));

@@ -98,6 +98,12 @@ jQuery(document).ready(function($){
             alert("Error was: " + status);
         } else {
             var distance = response.rows[0].elements[0].distance.text.split(" ")[0];
+
+            if (!distance) {
+                console.log('The addresses you entered might not be valid.');
+                return;
+            }
+
             var data = {
                     "distance": distance,
                     "origin": $("#origin").val(),

@@ -1,16 +1,21 @@
 <div id="booking-form">
     <header>
-        <h2>Book-A-Ride</h2>
+        <h2>Quote &amp; Book</h2>
     </header>
     <section>
         <form method="post" action="">
-            <!-- <input type="hidden" name="baby_seats" value="" /> -->
-            <div id="origin-con" class="item-con"><span class="icon"></span><input type="text" id="origin" name="origin" value="" placeholder="Pickup address" /></div>
+            <div id="origin-con" class="item-con">
+                <span class="icon"></span>
+                <input type="text" id="origin" name="origin" value="" placeholder="Pickup address" />
+            </div>
             <div id="airport-type-con" class="clearfix item-con">
                 <label class="active"><input type="radio" class="airport-type" name="airport_type" value="Domestic" checked />Domestic</label>
                 <label><input type="radio" class="airport-type" name="airport_type" value="International" />International</label>
             </div>
-            <div id="destination-con" class="item-con"><span class="icon"></span><input type="text" id="destination" name="destination" value="" placeholder="Drop off address" /></div>
+            <div id="destination-con" class="item-con">
+                <span class="icon"></span>
+                <input type="text" id="destination" name="destination" value="" placeholder="Drop off address" />
+            </div>
             <div class="clearfix item-con">
                 <div id="date-con">
                     <span class="icon"></span>
