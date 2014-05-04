@@ -35,6 +35,7 @@
 
 #booking-form {
 	width: 515px;
+	position: absolute;
 }
 
 #booking-form h2, 
