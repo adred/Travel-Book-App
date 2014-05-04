@@ -1,12 +1,13 @@
 var GMap = function GMap(options) {
     this.input = options.input;
     this.mapCanvas = options.mapCanvas;
+    this.defaultLatLng = options.defaultLatLng.split(",");
     this.init();
 }
 
 GMap.prototype.init = function () {
     var mapOptions = {
-        center: new google.maps.LatLng(-33.8688, 151.2195),
+        center: new google.maps.LatLng(this.defaultLatLng[0] ? this.defaultLatLng[0] : -33.8688, this.defaultLatLng[1] ? this.defaultLatLng[1]: 151.2195),
         zoom: 13,
         disableDefaultUI: true
     };

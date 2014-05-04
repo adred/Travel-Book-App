@@ -72,7 +72,7 @@
 }
 
 #booking-form .item-con {
-	margin: 1px;
+	margin: 1px 0;
 	padding: 15px 30px;
 	background-color: rgba(27, 30, 47, .9);
 	position: relative;
