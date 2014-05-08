@@ -6,6 +6,85 @@ var GMap = function GMap(options) {
 }
 
 GMap.prototype.init = function () {
+    var styles = [
+        {
+            "featureType":"water",
+            "stylers":[
+                {"color":"#242841"}
+            ]
+        },{
+            "featureType":"landscape",
+            "stylers":[
+                {"color":"#1E223B"}
+            ]
+        },{
+            "featureType":"poi",
+            "elementType":"geometry",
+            "stylers":[
+                {"color":"#30344D"}
+            ]
+        },{
+            "featureType":"road.highway",
+            "elementType":"geometry.fill",
+            "stylers":[
+                {"color":"#494D66"}
+            ]
+        },{
+            "featureType":"road.highway",
+            "elementType":"geometry.stroke",
+            "stylers":[
+                {"color":"#61657C"}
+            ]
+        },{
+            "featureType":"road.arterial",
+            "elementType":"geometry.fill",
+            "stylers":[
+                {"color":"#12162F"}
+            ]
+        },{
+            "featureType":"road.arterial",
+            "elementType":"geometry.stroke",
+            "stylers":[
+                {"color":"#272B46"}
+            ]
+        },{
+            "featureType":"road.local",
+            "elementType":"geometry",
+            "stylers":[
+                {"color":"#2A2E47"}
+            ]
+        },{
+            "elementType":"labels.text.fill",
+            "stylers":[
+                {"color":"#999DB6"}
+            ]
+        },{
+            "elementType":"labels.text.stroke",
+            "stylers":[
+                {"color":"#131730"}
+            ]
+        },{
+            "featureType":"transit",
+            "stylers":[
+                {"color":"#2A2E47"}
+            ]
+        },{
+            "featureType":"administrative",
+            "elementType":"geometry.fill",
+            "stylers":[
+                {"color":"#000000"}
+            ]
+        },{
+            "featureType":"administrative",
+            "elementType":"geometry.stroke",
+            "stylers":[
+                {"color":"#2F334C"},
+                {"lightness":14},
+                {"weight":1.4}
+            ]
+        }
+    ];
+
     var mapOptions = {
         center: new google.maps.LatLng(this.defaultLatLng[0] ? this.defaultLatLng[0] : -33.8688, this.defaultLatLng[1] ? this.defaultLatLng[1]: 151.2195),
         zoom: 13,
@@ -13,6 +92,7 @@ GMap.prototype.init = function () {
     };
 
     var map = new google.maps.Map(document.getElementById(this.mapCanvas), mapOptions);
+        map.setOptions({styles: styles});
     var input = document.getElementById(this.input);
     var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo("bounds", map);
