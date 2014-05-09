@@ -103,9 +103,10 @@ class TB_App {
         wp_enqueue_script('prettify', 'https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js');
         wp_enqueue_script('easydropdown', plugins_url('frontend/js/vendor/jquery.easydropdown.min.js', __FILE__ ));
         wp_enqueue_script('tb_app_calc', plugins_url('frontend/js/calc.js', __FILE__ ));
-        wp_enqueue_script('tb_app_gmap', plugins_url('frontend/js/gmap.js', __FILE__ ));
+        wp_enqueue_script('tb_app_autocomplete', plugins_url('frontend/js/autocomplete.js', __FILE__ ));
+        wp_enqueue_script('tb_app_directions', plugins_url('frontend/js/directions.js', __FILE__ ));
 
-        wp_localize_script('tb_app_gmap', 'TB_APP_Vars_Frontend', array(
+        wp_localize_script('tb_app_directions', 'TB_APP_Vars_Frontend', array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tb_app_frontend_nonce'),
         ));
